@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Practice Channel — YogaUOnline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     DESIGN TOKENS — Option 1 theme (teal/pine + marigold)
+     Shared system with the homepage mockup (option-1-teal.html)
+     ============================================================ */
+  :root{
+    --pine:       #17403C;
+    --pine-soft:  #2A5A54;
+    --sage:       #8FAF9C;
+    --sage-tint:  #EDF3EE;
+    --marigold:   #C98A2D;
+    --marigold-soft:#F5E7CE;
+    --paper:      #FCFAF5;
+    --ink:        #24312E;
+    --ink-soft:   #5C6B66;
+    --line:       #E3E0D6;
+    --white:      #FFFFFF;
+    --radius: 10px;
+    --maxw: 1120px;
+    --font-display: "Fraunces", Georgia, serif;
+    --font-body: "Karla", -apple-system, sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:var(--font-body);color:var(--ink);background:var(--paper);line-height:1.6;font-size:17px;}
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  h1,h2,h3{font-family:var(--font-display);font-weight:500;line-height:1.15;color:var(--pine);}
+  .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--marigold);margin-bottom:14px;}
+  .section-pad{padding:76px 0;}
+  .btn{display:inline-block;font-family:var(--font-body);font-weight:700;font-size:15px;padding:14px 28px;border-radius:999px;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:all .2s ease;}
+  .btn-primary{background:var(--pine);color:var(--white);}
+  .btn-primary:hover{background:var(--pine-soft);}
+  .btn-gold{background:var(--marigold);color:var(--white);}
+  .btn-gold:hover{background:#B0781F;}
+  .btn-outline{border-color:var(--pine);color:var(--pine);background:transparent;}
+  .btn-outline:hover{background:var(--pine);color:var(--white);}
+  .btn:focus-visible{outline:3px solid var(--marigold);outline-offset:2px;}
+  .img-placeholder{
+    background:linear-gradient(135deg,#DCE8DE 0%,#C4D8C9 60%,#B2CBBA 100%);
+    border-radius:var(--radius);display:flex;align-items:center;justify-content:center;
+    color:var(--pine-soft);font-size:12px;font-weight:600;letter-spacing:.06em;
+    text-transform:uppercase;text-align:center;padding:14px;
+  }
+
+  /* ============================================================
+     HEADER — shared with homepage mockup
+     ============================================================ */
+  header{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0;gap:24px;}
+  .logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+  .logo-mark{width:40px;height:40px;border-radius:50%;border:2.5px solid var(--pine);position:relative;flex-shrink:0;
+    background:radial-gradient(circle at 50% 38%, var(--marigold) 0 5px, transparent 5px);}
+  .logo-mark::after{content:"";position:absolute;left:50%;top:46%;transform:translateX(-50%);width:3px;height:14px;background:var(--marigold);border-radius:2px;}
+  .logo-text{font-family:var(--font-display);font-size:22px;color:var(--pine);font-weight:600;line-height:1;}
+  .logo-text small{display:block;font-family:var(--font-body);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-top:3px;}
+  nav ul{display:flex;gap:28px;list-style:none;align-items:center;}
+  nav a{text-decoration:none;font-weight:600;font-size:15px;color:var(--ink);}
+  nav a:hover,nav a.active{color:var(--pine);border-bottom:2px solid var(--marigold);padding-bottom:2px;}
+  .menu-note{display:none;font-size:13px;color:var(--ink-soft);}
+
+  /* ============================================================
+     SECTION 1 — PAGE HERO: PRACTICE CHANNEL
+     Full-width image hero with overlay, like the live page.
+     ============================================================ */
+  .page-hero{
+    background:linear-gradient(100deg,rgba(23,64,60,.88) 0%,rgba(42,90,84,.72) 55%,rgba(201,138,45,.35) 100%),
+      linear-gradient(135deg,#C4D8C9 0%,#8FAF9C 100%);
+    color:var(--white);
+  }
+  .page-hero .wrap{padding-top:88px;padding-bottom:88px;max-width:760px;margin:0;padding-left:max(24px,calc((100vw - var(--maxw))/2 + 24px));}
+  .page-hero h1{color:var(--white);font-size:clamp(36px,5vw,56px);letter-spacing:.02em;text-transform:uppercase;margin-bottom:14px;}
+  .page-hero p.tag{font-family:var(--font-display);font-style:italic;font-size:20px;color:var(--marigold-soft);margin-bottom:8px;}
+  .page-hero p.sub{font-size:16.5px;color:#DCE8E2;max-width:48ch;}
+
+  /* ============================================================
+     SECTION 2 — FOUR VALUE PROPS
+     Yoga tailored / master teachers / full spectrum / schedule
+     ============================================================ */
+  .props{background:var(--white);border-bottom:1px solid var(--line);}
+  .props .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;padding-top:56px;padding-bottom:56px;}
+  .prop{text-align:center;}
+  .prop .icon{
+    width:64px;height:64px;margin:0 auto 16px;border-radius:50%;
+    background:var(--sage-tint);border:2px solid var(--sage);
+    display:flex;align-items:center;justify-content:center;font-size:26px;
+  }
+  .prop h3{font-family:var(--font-body);font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--pine);margin-bottom:8px;}
+  .prop p{font-size:14px;color:var(--ink-soft);}
+
+  /* ============================================================
+     SECTION 3 — COMMUNITY: WHAT YOU GET AS A MEMBER
+     ============================================================ */
+  .community{background:var(--paper);}
+  .community .head{text-align:center;max-width:620px;margin:0 auto 48px;}
+  .community h2{font-size:clamp(26px,3vw,36px);margin-bottom:6px;}
+  .community .head p{font-family:var(--font-display);font-style:italic;color:var(--ink-soft);}
+  .community-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;text-align:center;}
+  .community-grid .circle{width:150px;height:150px;border-radius:50%;margin:0 auto 18px;overflow:hidden;}
+  .community-grid .circle .img-placeholder{width:100%;height:100%;border-radius:50%;}
+  .community-grid h3{font-family:var(--font-body);font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--pine);margin-bottom:8px;}
+  .community-grid p{font-size:14.5px;color:var(--ink-soft);max-width:34ch;margin:0 auto;}
+
+  /* ============================================================
+     SECTION 4 — PRACTICE GRID: "WHAT'S YOUR YOGA TODAY?"
+     Filter pills + video practice cards with real titles.
+     ============================================================ */
+  .practices{background:var(--white);}
+  .practices .head{text-align:center;max-width:660px;margin:0 auto 30px;}
+  .practices h2{font-size:clamp(26px,3vw,36px);margin-bottom:10px;}
+  .practices .head p{color:var(--ink-soft);}
+  .filters{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:40px;}
+  .filter{
+    font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    padding:8px 16px;border-radius:999px;border:1.5px solid var(--line);
+    color:var(--ink-soft);text-decoration:none;background:var(--white);
+  }
+  .filter.active,.filter:hover{background:var(--pine);border-color:var(--pine);color:var(--white);}
+  .video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .video-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;text-decoration:none;transition:box-shadow .18s ease,transform .18s ease;display:flex;flex-direction:column;}
+  .video-card:hover{box-shadow:0 16px 32px rgba(23,64,60,.10);transform:translateY(-3px);}
+  .video-thumb{aspect-ratio:16/9;position:relative;border-radius:0;}
+  .video-thumb .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+  .video-thumb .play span{width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;color:var(--pine);font-size:16px;box-shadow:0 6px 18px rgba(0,0,0,.18);padding-left:4px;}
+  .video-thumb .level{position:absolute;top:10px;left:10px;background:rgba(23,64,60,.85);color:var(--white);font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:4px;}
+  .video-body{padding:16px 18px 20px;flex:1;display:flex;flex-direction:column;}
+  .video-body h3{font-size:17px;line-height:1.3;margin-bottom:6px;}
+  .video-body p{font-size:13.5px;color:var(--ink-soft);flex:1;}
+  .video-body .vmeta{font-size:12.5px;color:var(--marigold);font-weight:700;margin-top:10px;}
+  .practices .more{text-align:center;margin-top:40px;}
+
+  /* ============================================================
+     SECTION 5 — MEMBERSHIP / FREE TRIAL CTA BAND
+     ============================================================ */
+  .trial{background:var(--pine);color:var(--white);}
+  .trial .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center;padding-top:64px;padding-bottom:64px;}
+  .trial .eyebrow{color:var(--marigold-soft);}
+  .trial h2{color:var(--white);font-size:clamp(24px,3vw,34px);margin-bottom:12px;}
+  .trial p{color:#CBDAD3;font-size:16.5px;max-width:52ch;margin-bottom:0;}
+  .trial-card{background:var(--white);border-radius:var(--radius);padding:32px;text-align:center;color:var(--ink);box-shadow:0 20px 44px rgba(0,0,0,.22);}
+  .trial-card h3{font-size:22px;margin-bottom:8px;}
+  .trial-card p{font-size:14.5px;color:var(--ink-soft);margin-bottom:18px;}
+
+  /* ============================================================
+     SECTION 6 — YOGA LAB
+     ============================================================ */
+  .lab{background:var(--sage-tint);}
+  .lab .head{text-align:center;max-width:640px;margin:0 auto 44px;}
+  .lab h2{font-size:clamp(26px,3vw,36px);margin-bottom:8px;}
+  .lab .head p{color:var(--ink-soft);}
+  .lab .video-grid{grid-template-columns:repeat(3,1fr);}
+  .lab .more{text-align:center;margin-top:38px;}
+
+  /* ============================================================
+     SECTION 7 — STATS: WHY WE ALL NEED YOGA
+     ============================================================ */
+  .stats{background:var(--white);}
+  .stats .head{text-align:center;max-width:640px;margin:0 auto 48px;}
+  .stats h2{font-size:clamp(26px,3vw,36px);margin-bottom:8px;}
+  .stats .head p{font-family:var(--font-display);font-style:italic;color:var(--ink-soft);}
+  .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;text-align:center;}
+  .stat-bubble{
+    width:170px;height:170px;border-radius:50%;margin:0 auto 16px;
+    background:var(--sage-tint);border:2px solid var(--sage);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--font-display);font-size:42px;color:var(--pine);
+  }
+  .stat-row span{display:block;font-size:13.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);}
+
+  /* ============================================================
+     SECTION 8 — NOT SURE WHERE TO START
+     ============================================================ */
+  .start{background:var(--marigold-soft);}
+  .start .wrap{display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap;padding-top:48px;padding-bottom:48px;}
+  .start h2{font-size:clamp(22px,2.6vw,30px);margin-bottom:6px;}
+  .start p{color:var(--ink-soft);font-size:15.5px;}
+
+  /* ============================================================
+     FOOTER — shared with homepage mockup
+     ============================================================ */
+  footer{background:#0F2E2B;color:#A9BFB7;font-size:14.5px;}
+  footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-top:60px;padding-bottom:44px;}
+  footer h4{color:var(--white);font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px;font-family:var(--font-body);}
+  footer ul{list-style:none;display:grid;gap:10px;}
+  footer a{text-decoration:none;}
+  footer a:hover{color:var(--white);}
+  .foot-brand p{margin-top:14px;max-width:34ch;}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.12);}
+  .foot-bottom .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:20px;padding-bottom:20px;font-size:13px;}
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 980px){
+    .props .wrap,.stat-row{grid-template-columns:repeat(2,1fr);}
+    .community-grid,.video-grid{grid-template-columns:repeat(2,1fr);}
+    .trial .wrap{grid-template-columns:1fr;}
+    footer .wrap{grid-template-columns:1fr 1fr;}
+    nav ul{display:none;}
+    .menu-note{display:block;}
+  }
+  @media (max-width: 620px){
+    .section-pad{padding:52px 0;}
+    .props .wrap,.community-grid,.video-grid,.stat-row{grid-template-columns:1fr;}
+    footer .wrap{grid-template-columns:1fr;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;animation:none !important;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER / NAVIGATION (shared with homepage)
+     ============================================================ -->
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="index.html" aria-label="YogaUOnline home">
+      <span class="logo-mark" aria-hidden="true"></span>
+      <span class="logo-text">YogaUOnline<small>Wellness education for life</small></span>
+    </a>
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="#">Read</a></li>
+        <li><a href="#" class="active">Practice</a></li>
+        <li><a href="#">Pose Library</a></li>
+        <li><a href="#">Courses</a></li>
+        <li><a href="#">Age Strong</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-primary" href="#trial">Try a Free 7-Day Trial</a>
+    <span class="menu-note">☰ Menu</span>
+  </div>
+</header>
+
+<main>
+
+<!-- ============================================================
+     SECTION 1 — PAGE HERO: PRACTICE CHANNEL
+     ============================================================ -->
+<section class="page-hero">
+  <div class="wrap">
+    <h1>Practice Channel</h1>
+    <p class="tag">Your Body, Your Time, Your Yoga!</p>
+    <p class="sub">Enjoy our carefully curated selection of top-notch practices with leading yoga teachers — anytime, anywhere, at your own pace.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 2 — FOUR VALUE PROPS
+     ============================================================ -->
+<section class="props">
+  <div class="wrap">
+    <div class="prop">
+      <span class="icon" aria-hidden="true">🧘</span>
+      <h3>Yoga Tailored to Every Body</h3>
+      <p>Learn how to fit yoga poses to YOUR body, not the other way around.</p>
+    </div>
+    <div class="prop">
+      <span class="icon" aria-hidden="true">🎓</span>
+      <h3>Study with Master Yoga Teachers</h3>
+      <p>Stay inspired and deepen your practice with some of the best yoga teachers in the field.</p>
+    </div>
+    <div class="prop">
+      <span class="icon" aria-hidden="true">🌿</span>
+      <h3>Full Spectrum of Practices</h3>
+      <p>No matter what your skill level, mood, or goal — we have a practice to fit your needs.</p>
+    </div>
+    <div class="prop">
+      <span class="icon" aria-hidden="true">🕐</span>
+      <h3>Practice on Your Schedule</h3>
+      <p>Got only 15 minutes? There's a practice for that! Choose by length, level, wellness goal and more.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 3 — COMMUNITY
+     ============================================================ -->
+<section class="community section-pad">
+  <div class="wrap">
+    <div class="head">
+      <h2>Join Our Worldwide Yoga Community</h2>
+      <p>As a Member, Here's What You Get</p>
+    </div>
+    <div class="community-grid">
+      <div>
+        <div class="circle"><div class="img-placeholder">Photo</div></div>
+        <h3>Leading Yoga Teachers</h3>
+        <p>Our carefully selected teachers combine in-depth knowledge of yoga practice and philosophy with a deep rooting in yoga anatomy and biomechanics.</p>
+      </div>
+      <div>
+        <div class="circle"><div class="img-placeholder">Photo</div></div>
+        <h3>Practices for You</h3>
+        <p>Simply put, our goal is to give practices that fit your specific needs — filter by focus, level, length, and wellness goal.</p>
+      </div>
+      <div>
+        <div class="circle"><div class="img-placeholder">Photo</div></div>
+        <h3>Anytime Anywhere</h3>
+        <p>The key to enjoying the benefits of yoga is regular practice. Practice yoga anytime, anywhere — it fits the needs of your busy schedule.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 4 — PRACTICE GRID: WHAT'S YOUR YOGA TODAY?
+     Real practice titles from the live Practice Channel.
+     ============================================================ -->
+<section class="practices section-pad">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Find a practice</p>
+      <h2>What's Your Yoga Today?</h2>
+      <p>Find a practice that fits your mood, time, and experience. Choose your practice type below and practice along with expert teachers.</p>
+    </div>
+    <div class="filters" role="tablist" aria-label="Practice filters">
+      <a class="filter active" href="#">All</a>
+      <a class="filter" href="#">Gentle Yoga</a>
+      <a class="filter" href="#">Slow Yoga</a>
+      <a class="filter" href="#">Chair Yoga</a>
+      <a class="filter" href="#">Wall Series</a>
+      <a class="filter" href="#">Body Part</a>
+      <a class="filter" href="#">Age Strong</a>
+    </div>
+    <div class="video-grid">
+      <a class="video-card" href="#">
+        <div class="img-placeholder video-thumb">Thumbnail
+          <span class="level">Beginner</span><span class="play"><span>▶</span></span>
+        </div>
+        <div class="video-body">
+          <h3>Wall Series: Focus on Shoulders</h3>
+          <p>Shoulders! Try using the wall and a strap: this class will help to release and strengthen.</p>
+          <span class="vmeta">With Charlotte Bell · 25 min</span>
+        </div>
+      </a>
+      <a class="video-card" href="#">
+        <div class="img-placeholder video-thumb">Thumbnail
+          <span class="level">All Levels</span><span class="play"><span>▶</span></span>
+        </div>
+        <div class="video-body">
+          <h3>Everyday Gentle Flow</h3>
+          <p>Move your whole body from a busy mind into gentle stretches for your whole day.</p>
+          <span class="vmeta">With Mado Hesselink · 30 min</span>
+        </div>
+      </a>
+      <a class="video-card" href="#">
+        <div class="img-placeholder video-thumb">Thumbnail
+          <span class="level">Beginner</span><span class="play"><span>▶</span></span>
+        </div>
+        <div class="video-body">
+          <h3>Wall Series: Focus on Balance</h3>
+          <p>Balance is one of the first things we lose as we age, unless we practice it.</p>
+          <span class="vmeta">With Charlotte Bell · 20 min</span>
+        </div>
+      </a>
+      <a class="video-card" href="#">
+        <div class="img-placeholder video-thumb">Thumbnail
+          <span class="level">Gentle</span><span class="play"><span>▶</span></span>
+        </div>
+        <div class="video-body">
+          <h3>Slow Yoga: Gentle Practice for Lengthening the Spine</h3>
+          <p>In this gentle supine yoga practice, we focus on lengthening the spine and creating more space.</p>
+          <span class="vmeta">With Mada Weiser · 35 min</span>
+        </div>
+      </a>
+      <a class="video-card" href="#">
+        <div class="img-placeholder video-thumb">Thumbnail
+          <span class="level">Chair Yoga</span><span class="play"><span>▶</span></span>
+        </div>
+        <div class="video-body">
+          <h3>Introduction to Chair Yoga</h3>
+          <p>In this brief introduction, learn how to use the chair as a tool to make yoga accessible.</p>
+          <span class="vmeta">With Mada Weiser · 15 min</span>
+        </div>
+      </a>
+      <a class="video-card" href="#">
+        <div class="img-placeholder video-thumb">Thumbnail
+          <span class="level">Gentle</span><span class="play"><span>▶</span></span>
+        </div>
+        <div class="video-body">
+          <h3>Release Tight Shoulders, Improve Posture</h3>
+          <p>For most people, the shoulders are a very tight and sometimes painful part of the body.</p>
+          <span class="vmeta">With Elise Bath · 25 min</span>
+        </div>
+      </a>
+    </div>
+    <div class="more"><a class="btn btn-outline" href="#">Show All Practices</a></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 5 — FREE TRIAL CTA BAND
+     ============================================================ -->
+<section class="trial" id="trial">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Practice yoga online with leading yoga teachers</p>
+      <h2>Unlock the gifts of yoga — practice online, deepen your practice, and stay inspired</h2>
+      <p>Enhance your practice skills with unlimited access to top-notch yoga practices, guided by teachers who adapt yoga to your body.</p>
+    </div>
+    <div class="trial-card">
+      <h3>Enjoy a Free 7-Day Trial</h3>
+      <p>After 7 days, enjoy unlimited access to all Practice Channel videos for only $19/month. Cancel anytime.</p>
+      <a class="btn btn-gold" href="#">Try Us Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 6 — YOGA LAB
+     ============================================================ -->
+<section class="lab section-pad">
+  <div class="wrap">
+    <div class="head">
+      <h2>Also Check Out Our Yoga Lab!</h2>
+      <p>Enhance your practice skills with unlimited access to lessons like these.</p>
+    </div>
+    <div class="video-grid">
+      <a class="video-card" href="#">
+        <div class="img-placeholder video-thumb">Thumbnail
+          <span class="level">Yoga Lab</span><span class="play"><span>▶</span></span>
+        </div>
+        <div class="video-body">
+          <h3>Strong and Steady with Full Side Plank (Vasisthasana)</h3>
+          <p>Vasisthasana is a challenging pose — strengthening and balancing at once. It stabilizes the arms, belly, and legs.</p>
+          <span class="vmeta">With Leila Stuart · Lesson</span>
+        </div>
+      </a>
+      <a class="video-card" href="#">
+        <div class="img-placeholder video-thumb">Thumbnail
+          <span class="level">Yoga Lab</span><span class="play"><span>▶</span></span>
+        </div>
+        <div class="video-body">
+          <h3>One-Stop Core Stability Shop: Boat Pose</h3>
+          <p>Check out our version with Yoga Props for Every Body. It'll shore up our core stability from every angle.</p>
+          <span class="vmeta">With Leila Stuart · Lesson</span>
+        </div>
+      </a>
+      <a class="video-card" href="#">
+        <div class="img-placeholder video-thumb">Thumbnail
+          <span class="level">Yoga Lab</span><span class="play"><span>▶</span></span>
+        </div>
+        <div class="video-body">
+          <h3>Poses We Love — Building Core Strength with Crow Pose</h3>
+          <p>The one-stop shopping of core stabilization! Embrace this powerful pose to strengthen arms, wrists, and core.</p>
+          <span class="vmeta">With Leila Stuart · Lesson</span>
+        </div>
+      </a>
+    </div>
+    <div class="more"><a class="btn btn-outline" href="#">View All Lessons</a></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 7 — STATS: WHY WE ALL NEED YOGA
+     ============================================================ -->
+<section class="stats section-pad">
+  <div class="wrap">
+    <div class="head">
+      <h2>Why We All Need Yoga</h2>
+      <p>Our teachers are prescreened to make sure you only get to study with the best. And, you get to practice in the comfort of your own home.</p>
+    </div>
+    <div class="stat-row">
+      <div><div class="stat-bubble">3500+</div><span>Studies on Yoga</span></div>
+      <div><div class="stat-bubble">115+</div><span>Health Benefits</span></div>
+      <div><div class="stat-bubble">100</div><span>You Can Practice at Any Age</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 8 — NOT SURE WHERE TO START?
+     ============================================================ -->
+<section class="start">
+  <div class="wrap">
+    <div>
+      <h2>Not Sure Where To Start?</h2>
+      <p>Beginner? Intermediate? Or experienced? Find one where to start!</p>
+    </div>
+    <a class="btn btn-primary" href="#">Try a Free Practice</a>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER (shared with homepage)
+     ============================================================ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-brand">
+      <span class="logo-text" style="color:#fff;">YogaUOnline</span>
+      <p>Wellness education for life — trusted yoga education for practitioners, teachers, and everyone committed to aging strong.</p>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <ul>
+        <li><a href="#">Articles</a></li>
+        <li><a href="#">Courses</a></li>
+        <li><a href="#">Free reports</a></li>
+        <li><a href="#">YouTube</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Practice</h4>
+      <ul>
+        <li><a href="#">Practice Channel</a></li>
+        <li><a href="#">Yoga Lab</a></li>
+        <li><a href="#">Pose Library</a></li>
+        <li><a href="#">Free 7-day trial</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About us</a></li>
+        <li><a href="#">Our teachers</a></li>
+        <li><a href="#">Membership</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div class="wrap">
+      <span>© 2026 YogaUOnline. All rights reserved.</span>
+      <span><a href="#">Privacy</a> · <a href="#">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
