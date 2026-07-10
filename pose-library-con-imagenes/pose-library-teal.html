@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoga 2.0 Pose Library — Yoga For Every Body | YogaUOnline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     DESIGN TOKENS — Option 1 theme (teal/pine + marigold)
+     Shared system with option-1-teal.html and subpages
+     ============================================================ */
+  :root{
+    --pine:       #17403C;
+    --pine-soft:  #2A5A54;
+    --sage:       #8FAF9C;
+    --sage-tint:  #EDF3EE;
+    --marigold:   #C98A2D;
+    --marigold-soft:#F5E7CE;
+    --paper:      #FCFAF5;
+    --ink:        #24312E;
+    --ink-soft:   #5C6B66;
+    --line:       #E3E0D6;
+    --white:      #FFFFFF;
+    --radius: 10px;
+    --maxw: 1120px;
+    --font-display: "Fraunces", Georgia, serif;
+    --font-body: "Karla", -apple-system, sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:var(--font-body);color:var(--ink);background:var(--paper);line-height:1.6;font-size:17px;}
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  h1,h2,h3{font-family:var(--font-display);font-weight:500;line-height:1.15;color:var(--pine);}
+  .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--marigold);margin-bottom:14px;}
+  .section-pad{padding:76px 0;}
+  .btn{display:inline-block;font-family:var(--font-body);font-weight:700;font-size:15px;padding:14px 28px;border-radius:999px;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:all .2s ease;}
+  .btn-primary{background:var(--pine);color:var(--white);}
+  .btn-primary:hover{background:var(--pine-soft);}
+  .btn-gold{background:var(--marigold);color:var(--white);}
+  .btn-gold:hover{background:#B0781F;}
+  .btn-outline{border-color:var(--pine);color:var(--pine);background:transparent;}
+  .btn-outline:hover{background:var(--pine);color:var(--white);}
+  .btn:focus-visible{outline:3px solid var(--marigold);outline-offset:2px;}
+  .img-placeholder{
+    background:linear-gradient(135deg,#DCE8DE 0%,#C4D8C9 60%,#B2CBBA 100%);
+    border-radius:var(--radius);display:flex;align-items:center;justify-content:center;
+    color:var(--pine-soft);font-size:12px;font-weight:600;letter-spacing:.06em;
+    text-transform:uppercase;text-align:center;padding:14px;
+  }
+  .photo{position:relative;overflow:hidden;padding:0;background:#fff;}
+  .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .photo.contain img{object-fit:contain;}
+
+  /* ============================================================
+     HEADER — shared style + NEW simplified navigation
+     (Articles / Courses / Membership / Videos + Age Strong)
+     ============================================================ */
+  header{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0;gap:24px;}
+  .logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+  .logo-mark{width:40px;height:40px;border-radius:50%;border:2.5px solid var(--pine);position:relative;flex-shrink:0;
+    background:radial-gradient(circle at 50% 38%, var(--marigold) 0 5px, transparent 5px);}
+  .logo-mark::after{content:"";position:absolute;left:50%;top:46%;transform:translateX(-50%);width:3px;height:14px;background:var(--marigold);border-radius:2px;}
+  .logo-text{font-family:var(--font-display);font-size:22px;color:var(--pine);font-weight:600;line-height:1;}
+  .logo-text small{display:block;font-family:var(--font-body);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-top:3px;}
+  nav ul{display:flex;gap:28px;list-style:none;align-items:center;}
+  nav a{text-decoration:none;font-weight:600;font-size:15px;color:var(--ink);}
+  nav a:hover,nav a.active{color:var(--pine);border-bottom:2px solid var(--marigold);padding-bottom:2px;}
+  .menu-note{display:none;font-size:13px;color:var(--ink-soft);}
+
+  /* ============================================================
+     SECTION 1 — HERO: YOGA FOR EVERY BODY
+     ============================================================ */
+  .hero{background:linear-gradient(180deg,var(--sage-tint) 0%,var(--paper) 100%);}
+  .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding-top:64px;padding-bottom:64px;}
+  .hero h1{font-size:clamp(36px,5vw,56px);text-transform:uppercase;letter-spacing:.02em;margin-bottom:14px;}
+  .hero .quote{font-family:var(--font-display);font-style:italic;font-size:18px;color:var(--marigold);margin-bottom:18px;}
+  .hero p.lede{font-size:18px;color:var(--ink-soft);margin-bottom:26px;max-width:52ch;}
+  .hero-visual .img-placeholder{aspect-ratio:4/3;box-shadow:0 24px 48px rgba(23,64,60,.14);}
+
+  /* ============================================================
+     SECTION 2 — SIX CATEGORY TILES
+     ============================================================ */
+  .categories{background:var(--white);}
+  .cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .cat-tile{
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;text-decoration:none;text-align:center;
+    transition:transform .18s ease,box-shadow .18s ease;
+  }
+  .cat-tile:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(23,64,60,.10);}
+  .cat-tile .img-placeholder{aspect-ratio:16/9;border-radius:0;}
+  .cat-tile h3{font-family:var(--font-body);font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--pine);padding:16px 12px;}
+
+  /* ============================================================
+     SECTION 3 — 1000s OF POSE MODIFICATIONS + 3 VALUE COLUMNS
+     ============================================================ */
+  .mods{background:var(--sage-tint);}
+  .mods .head{text-align:center;max-width:640px;margin:0 auto 40px;}
+  .mods h2{font-size:clamp(26px,3vw,36px);}
+  .mods-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:48px;}
+  .mods-strip .img-placeholder{aspect-ratio:4/3;}
+  .value-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;text-align:center;}
+  .value-cols h3{font-family:var(--font-body);font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--pine);margin-bottom:10px;}
+  .value-cols p{font-size:14.5px;color:var(--ink-soft);max-width:32ch;margin:0 auto;}
+
+  /* ============================================================
+     SECTION 4 — SAMPLE POSE REPORT CTA BAND
+     ============================================================ */
+  .sample{background:var(--pine);color:var(--white);}
+  .sample .wrap{display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap;padding-top:48px;padding-bottom:48px;}
+  .sample p{font-family:var(--font-display);font-style:italic;font-size:19px;max-width:56ch;}
+
+  /* ============================================================
+     SECTION 5 — IN-DEPTH POSE ANALYSIS (video + 3 columns)
+     ============================================================ */
+  .analysis{background:var(--white);}
+  .analysis .head{text-align:center;max-width:640px;margin:0 auto 40px;}
+  .analysis h2{font-size:clamp(26px,3vw,36px);}
+  .video-feature{max-width:860px;margin:0 auto 48px;position:relative;}
+  .video-feature .img-placeholder{aspect-ratio:16/9;box-shadow:0 20px 44px rgba(23,64,60,.14);}
+  .video-feature .play{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  }
+  .video-feature .play span{
+    width:72px;height:72px;border-radius:50%;background:rgba(255,255,255,.94);
+    display:flex;align-items:center;justify-content:center;color:var(--pine);
+    font-size:26px;box-shadow:0 8px 24px rgba(0,0,0,.2);padding-left:6px;
+  }
+  .analysis .value-cols h3{color:var(--pine);}
+
+  /* ============================================================
+     SECTION 6 — PREMIUM CONTENT GRID
+     ============================================================ */
+  .premium{background:var(--sage-tint);}
+  .premium .head{text-align:center;max-width:640px;margin:0 auto 44px;}
+  .premium h2{font-size:clamp(26px,3vw,36px);}
+  .prem-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+  .prem-card{
+    background:var(--white);border-radius:var(--radius);overflow:hidden;text-decoration:none;
+    display:grid;grid-template-columns:.9fr 1.1fr;transition:box-shadow .18s ease;
+  }
+  .prem-card:hover{box-shadow:0 16px 32px rgba(23,64,60,.12);}
+  .prem-card .img-placeholder{border-radius:0;min-height:150px;height:100%;}
+  .prem-body{padding:22px 24px;display:flex;flex-direction:column;justify-content:center;}
+  .prem-body h3{font-size:18px;margin-bottom:6px;}
+  .prem-body p{font-family:var(--font-display);font-style:italic;font-size:14.5px;color:var(--ink-soft);}
+  .prem-card.signup{background:var(--marigold-soft);}
+  .prem-card.signup h3{color:#8A5F16;}
+
+  /* ============================================================
+     SECTION 7 — FAQs
+     ============================================================ */
+  .faq{background:var(--white);}
+  .faq .wrap{display:grid;grid-template-columns:.6fr 1.4fr;gap:48px;align-items:start;padding-top:76px;padding-bottom:76px;}
+  .faq h2{font-size:clamp(26px,3vw,36px);}
+  .faq-list{display:grid;gap:12px;}
+  details{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:18px 22px;}
+  details[open]{border-color:var(--sage);}
+  summary{font-weight:700;font-size:16px;color:var(--pine);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;}
+  summary::-webkit-details-marker{display:none;}
+  summary::after{content:"+";font-family:var(--font-display);font-size:22px;color:var(--marigold);flex-shrink:0;}
+  details[open] summary::after{content:"–";}
+  details p{font-size:14.5px;color:var(--ink-soft);margin-top:12px;}
+
+  /* ============================================================
+     SECTION 8 — DISCOVER YOGA 2.0 CLOSING BAND
+     ============================================================ */
+  .discover{background:var(--marigold-soft);}
+  .discover .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding-top:64px;padding-bottom:64px;}
+  .discover h2{font-size:clamp(30px,4vw,46px);text-transform:uppercase;letter-spacing:.02em;margin-bottom:12px;}
+  .discover p{color:var(--ink-soft);font-size:16.5px;margin-bottom:24px;max-width:46ch;}
+  .discover .img-placeholder{aspect-ratio:4/3;}
+
+  /* ============================================================
+     FOOTER — shared with other pages
+     ============================================================ */
+  footer{background:#0F2E2B;color:#A9BFB7;font-size:14.5px;}
+  footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-top:60px;padding-bottom:44px;}
+  footer h4{color:var(--white);font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px;font-family:var(--font-body);}
+  footer ul{list-style:none;display:grid;gap:10px;}
+  footer a{text-decoration:none;}
+  footer a:hover{color:var(--white);}
+  .foot-brand p{margin-top:14px;max-width:34ch;}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.12);}
+  .foot-bottom .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:20px;padding-bottom:20px;font-size:13px;}
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 980px){
+    .hero .wrap,.faq .wrap,.discover .wrap{grid-template-columns:1fr;gap:40px;}
+    .cat-grid,.value-cols{grid-template-columns:repeat(2,1fr);}
+    .mods-strip{grid-template-columns:repeat(2,1fr);}
+    .prem-grid{grid-template-columns:1fr;}
+    footer .wrap{grid-template-columns:1fr 1fr;}
+    nav ul{display:none;}
+    .menu-note{display:block;}
+  }
+  @media (max-width: 620px){
+    .section-pad{padding:52px 0;}
+    .cat-grid,.value-cols,.mods-strip{grid-template-columns:1fr;}
+    .prem-card{grid-template-columns:1fr;}
+    footer .wrap{grid-template-columns:1fr;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;animation:none !important;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER / NAVIGATION — NEW simplified nav (4 pathways + Age Strong)
+     ============================================================ -->
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="index.html" aria-label="YogaUOnline home">
+      <span class="logo-mark" aria-hidden="true"></span>
+      <span class="logo-text">YogaUOnline<small>Wellness education for life</small></span>
+    </a>
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="option-1-teal.html#pathways">Articles</a></li>
+        <li><a href="option-1-teal.html#pathways">Courses</a></li>
+        <li><a href="option-1-teal.html#pathways">Membership</a></li>
+        <li><a href="option-1-teal.html#videos">Videos</a></li>
+        <li><a href="option-1-teal.html#agestrong">Age Strong</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-primary" href="#">Free 7-Day Trial</a>
+    <span class="menu-note">☰ Menu</span>
+  </div>
+</header>
+
+<main>
+
+<!-- ============================================================
+     SECTION 1 — HERO: YOGA FOR EVERY BODY
+     ============================================================ -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Yoga 2.0 Pose Library</p>
+      <h1>Yoga For Every Body</h1>
+      <p class="quote">"Yoga is not about touching your toes. It's about what you learn on the way down." — Judith Hanson Lasater</p>
+      <p class="lede">Yoga is not one-size-fits-all. Explore 1,000+ Yoga 2.0 pose variations to find out what works for YOUR body. Discover new ways to reap the many benefits of yoga.</p>
+      <a class="btn btn-gold" href="#">Get a Free 7-Day Trial</a>
+    </div>
+    <div class="hero-visual">
+      <div class="img-placeholder photo" style="aspect-ratio:4/3;"><img src="images/hero-boat-pose.jpg" alt="Practitioner in a joyful Boat Pose variation" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 2 — SIX CATEGORY TILES
+     Fast routing into the pose library, mirroring the live page.
+     ============================================================ -->
+<section class="categories section-pad">
+  <div class="wrap">
+    <div class="cat-grid">
+      <a class="cat-tile" href="#"><div class="img-placeholder photo" style="aspect-ratio:16/9;"><img src="images/cat-all-poses.jpg" alt="Supported squat with rolled blanket" loading="lazy"></div><h3>All Yoga Poses</h3></a>
+      <a class="cat-tile" href="#"><div class="img-placeholder photo" style="aspect-ratio:16/9;"><img src="images/cat-by-type.jpg" alt="Seated chair pose with bolster" loading="lazy"></div><h3>Yoga Poses by Type</h3></a>
+      <a class="cat-tile" href="#"><div class="img-placeholder photo" style="aspect-ratio:16/9;"><img src="images/cat-by-benefit.jpg" alt="Plank pose with block support" loading="lazy"></div><h3>Yoga Poses by Benefit</h3></a>
+      <a class="cat-tile" href="#"><div class="img-placeholder photo" style="aspect-ratio:16/9;"><img src="images/cat-by-anatomy.jpg" alt="Chair-seated pose with block" loading="lazy"></div><h3>Yoga Poses by Anatomy</h3></a>
+      <a class="cat-tile" href="#"><div class="img-placeholder photo" style="aspect-ratio:16/9;"><img src="images/cat-a-z.jpg" alt="Seated hero pose on block" loading="lazy"></div><h3>Yoga Poses A–Z</h3></a>
+      <a class="cat-tile" href="#"><div class="img-placeholder photo" style="aspect-ratio:16/9;"><img src="images/cat-blog.jpg" alt="Chair-supported side plank variation" loading="lazy"></div><h3>Yoga 2.0 Blog</h3></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 3 — 1000s OF POSE MODIFICATIONS + VALUE COLUMNS
+     ============================================================ -->
+<section class="mods section-pad">
+  <div class="wrap">
+    <div class="head">
+      <h2>Choose Among 1000s of Pose Modifications</h2>
+    </div>
+    <div class="mods-strip">
+      <div class="img-placeholder">Variation photo</div>
+      <div class="img-placeholder">Variation photo</div>
+      <div class="img-placeholder">Variation photo</div>
+      <div class="img-placeholder">Variation photo</div>
+    </div>
+    <div class="value-cols">
+      <div>
+        <h3>Explore Yoga 2.0</h3>
+        <p>Explore new variations of poses to connect more deeply with each asana and find greater ease and comfort in each pose.</p>
+      </div>
+      <div>
+        <h3>Empower Change</h3>
+        <p>You are unique. Your body is unique. Empower transformation by practicing in a way that works for YOUR body.</p>
+      </div>
+      <div>
+        <h3>Embrace Peace</h3>
+        <p>Experience the soothing calm of body and mind that is the hallmark of yoga asanas, when practiced with ease and mindfulness.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 4 — SAMPLE POSE REPORT CTA BAND
+     ============================================================ -->
+<section class="sample">
+  <div class="wrap">
+    <p>Try us free! Get a Sample Pose Report to experience the full benefits of the YogaU Pose Library.</p>
+    <a class="btn btn-gold" href="#">Download a Free Pose</a>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 5 — IN-DEPTH POSE ANALYSIS AND TEACHING TIPS
+     ============================================================ -->
+<section class="analysis section-pad">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Watch a preview</p>
+      <h2>In-Depth Pose Analysis and Teaching Tips</h2>
+    </div>
+    <div class="video-feature">
+      <div class="img-placeholder photo" style="aspect-ratio:16/9;"><img src="images/video-down-dog.jpg" alt="Yoga Pose Library intro video — six preparatory poses for Down Dog" loading="lazy"></div>
+      <span class="play" aria-hidden="true"><span>▶</span></span>
+    </div>
+    <div class="value-cols">
+      <div>
+        <h3>Master Alignment</h3>
+        <p>What are the most common alignment issues for each yoga pose? Learn how to observe and address them to stay safe in your practice.</p>
+      </div>
+      <div>
+        <h3>Master Sequencing</h3>
+        <p>How do you best prepare your body for each pose? Learn anatomy-based sequencing steps that systematically warm up your body.</p>
+      </div>
+      <div>
+        <h3>Master Yoga Teaching</h3>
+        <p>Becoming a sought-after yoga teacher doesn't just happen. Develop a master teacher repertoire of teaching skills and pose variations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 6 — PREMIUM CONTENT GRID
+     ============================================================ -->
+<section class="premium section-pad">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Members get more</p>
+      <h2>Check Out Our Premium Content</h2>
+    </div>
+    <div class="prem-grid">
+      <a class="prem-card" href="#">
+        <div class="img-placeholder">Photo</div>
+        <div class="prem-body">
+          <h3>Video Practice Examples</h3>
+          <p>For every yoga pose</p>
+        </div>
+      </a>
+      <a class="prem-card" href="#">
+        <div class="img-placeholder">Photo</div>
+        <div class="prem-body">
+          <h3>Learn Common Alignment Issues</h3>
+          <p>And how to deal with them</p>
+        </div>
+      </a>
+      <a class="prem-card" href="#">
+        <div class="img-placeholder">Photo</div>
+        <div class="prem-body">
+          <h3>Tips for Beginners</h3>
+          <p>Learn the best prep poses for each yoga pose</p>
+        </div>
+      </a>
+      <a class="prem-card signup" href="#">
+        <div class="img-placeholder">Photo</div>
+        <div class="prem-body">
+          <h3>Sign Up Now</h3>
+          <p>Try free for 7 days</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 7 — FAQs
+     ============================================================ -->
+<section class="faq">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Questions?</p>
+      <h2>FAQs</h2>
+    </div>
+    <div class="faq-list">
+      <details>
+        <summary>How do I personalize my practice?</summary>
+        <p>Every pose in the Yoga 2.0 Library includes multiple variations with props and modifications, so you can choose the version that fits your body, level, and goals today.</p>
+      </details>
+      <details>
+        <summary>What do I get when I sign up?</summary>
+        <p>Full access to 1,000+ pose variations, in-depth alignment analysis, sequencing guidance, teaching tips, and video practice examples — starting with a free 7-day trial.</p>
+      </details>
+      <details>
+        <summary>What are Yoga 2.0 poses?</summary>
+        <p>Yoga 2.0 is our approach to making yoga fit YOUR body, not the other way around — classic asanas reimagined with variations for every level, age, and ability.</p>
+      </details>
+      <details>
+        <summary>Is this for beginners too?</summary>
+        <p>Absolutely. Every pose includes accessible starting variations and prep poses, so beginners can build a safe, confident practice from day one.</p>
+      </details>
+      <details>
+        <summary>Can't find a certain pose?</summary>
+        <p>Let us know! The library is always growing, and we prioritize new poses and variations based on what our members request.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 8 — DISCOVER YOGA 2.0 CLOSING BAND
+     ============================================================ -->
+<section class="discover">
+  <div class="wrap">
+    <div>
+      <h2>Discover Yoga 2.0</h2>
+      <p>Learn how to make yoga poses fit YOUR body, not the other way around. What's your yoga today? Explore 1,000+ pose variations to find the yoga that works for YOUR body!</p>
+      <a class="btn btn-primary" href="#">Get a Free 7-Day Trial</a>
+    </div>
+    <div class="img-placeholder">Image placeholder<br>Chair-supported Warrior variation</div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER — shared with other pages
+     ============================================================ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-brand">
+      <span class="logo-text" style="color:#fff;">YogaUOnline</span>
+      <p>Wellness education for life — trusted yoga education for practitioners, teachers, and everyone committed to aging strong.</p>
+    </div>
+    <div>
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="option-1-teal.html#pathways">Articles</a></li>
+        <li><a href="option-1-teal.html#pathways">Courses</a></li>
+        <li><a href="option-1-teal.html#pathways">Membership</a></li>
+        <li><a href="option-1-teal.html#videos">Videos</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Pose Library</h4>
+      <ul>
+        <li><a href="#">All Yoga Poses</a></li>
+        <li><a href="#">Poses by Type</a></li>
+        <li><a href="#">Poses by Benefit</a></li>
+        <li><a href="pose-library-blog-teal.html">Pose Library Blog</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About us</a></li>
+        <li><a href="#">Our teachers</a></li>
+        <li><a href="option-1-teal.html#agestrong">Age Strong</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div class="wrap">
+      <span>© 2026 YogaUOnline. All rights reserved.</span>
+      <span><a href="#">Privacy</a> · <a href="#">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
