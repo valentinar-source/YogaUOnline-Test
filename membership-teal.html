@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Membership — YogaUOnline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     DESIGN TOKENS — Option 1 theme (teal/pine + marigold)
+     Shared system with option-1-teal.html and subpages
+     ============================================================ */
+  :root{
+    --pine:       #17403C;
+    --pine-soft:  #2A5A54;
+    --sage:       #8FAF9C;
+    --sage-tint:  #EDF3EE;
+    --marigold:   #C98A2D;
+    --marigold-soft:#F5E7CE;
+    --paper:      #FCFAF5;
+    --ink:        #24312E;
+    --ink-soft:   #5C6B66;
+    --line:       #E3E0D6;
+    --white:      #FFFFFF;
+    --radius: 10px;
+    --maxw: 1120px;
+    --font-display: "Fraunces", Georgia, serif;
+    --font-body: "Karla", -apple-system, sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:var(--font-body);color:var(--ink);background:var(--paper);line-height:1.6;font-size:17px;}
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  h1,h2,h3{font-family:var(--font-display);font-weight:500;line-height:1.15;color:var(--pine);}
+  .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--marigold);margin-bottom:14px;}
+  .section-pad{padding:76px 0;}
+  .btn{display:inline-block;font-family:var(--font-body);font-weight:700;font-size:15px;padding:14px 28px;border-radius:999px;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:all .2s ease;}
+  .btn-primary{background:var(--pine);color:var(--white);}
+  .btn-primary:hover{background:var(--pine-soft);}
+  .btn-gold{background:var(--marigold);color:var(--white);}
+  .btn-gold:hover{background:#B0781F;}
+  .btn-outline{border-color:var(--pine);color:var(--pine);background:transparent;}
+  .btn-outline:hover{background:var(--pine);color:var(--white);}
+  .btn-white-outline{border-color:var(--white);color:var(--white);background:transparent;}
+  .btn-white-outline:hover{background:var(--white);color:var(--pine);}
+  .btn:focus-visible{outline:3px solid var(--marigold);outline-offset:2px;}
+  input:focus-visible{outline:3px solid var(--marigold);outline-offset:1px;}
+  .img-placeholder{
+    background:linear-gradient(135deg,#DCE8DE 0%,#C4D8C9 60%,#B2CBBA 100%);
+    border-radius:var(--radius);display:flex;align-items:center;justify-content:center;
+    color:var(--pine-soft);font-size:12px;font-weight:600;letter-spacing:.06em;
+    text-transform:uppercase;text-align:center;padding:14px;
+  }
+
+  /* ============================================================
+     HEADER — shared with other pages + MEMBER LOGIN button
+     (the login button lives in the header per meeting notes:
+     members come to the site hunting for "membership login")
+     ============================================================ */
+  header{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0;gap:24px;}
+  .logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+  .logo-mark{width:40px;height:40px;border-radius:50%;border:2.5px solid var(--pine);position:relative;flex-shrink:0;
+    background:radial-gradient(circle at 50% 38%, var(--marigold) 0 5px, transparent 5px);}
+  .logo-mark::after{content:"";position:absolute;left:50%;top:46%;transform:translateX(-50%);width:3px;height:14px;background:var(--marigold);border-radius:2px;}
+  .logo-text{font-family:var(--font-display);font-size:22px;color:var(--pine);font-weight:600;line-height:1;}
+  .logo-text small{display:block;font-family:var(--font-body);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-top:3px;}
+  nav ul{display:flex;gap:26px;list-style:none;align-items:center;}
+  nav a{text-decoration:none;font-weight:600;font-size:15px;color:var(--ink);}
+  nav a:hover,nav a.active{color:var(--pine);border-bottom:2px solid var(--marigold);padding-bottom:2px;}
+  .nav-actions{display:flex;gap:10px;align-items:center;}
+  .btn-login{padding:11px 20px;font-size:14px;}
+  .menu-note{display:none;font-size:13px;color:var(--ink-soft);}
+
+  /* ============================================================
+     SECTION 1 — HERO: THE YOGAU ONLINE MEMBERSHIP
+     Enrollment-closed mode: status badge + waitlist CTA,
+     plus a secondary member-login path.
+     ============================================================ */
+  .hero{background:linear-gradient(180deg,var(--sage-tint) 0%,var(--paper) 100%);}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;padding-top:68px;padding-bottom:68px;}
+  .status-badge{
+    display:inline-flex;align-items:center;gap:8px;background:var(--marigold-soft);
+    color:#8A5F16;font-weight:700;font-size:13px;padding:7px 16px;border-radius:999px;margin-bottom:18px;
+  }
+  .status-badge .dot{width:9px;height:9px;border-radius:50%;background:var(--marigold);}
+  .hero h1{font-size:clamp(32px,4.2vw,50px);margin-bottom:18px;}
+  .hero h1 em{font-style:italic;color:var(--marigold);}
+  .hero p.lede{font-size:19px;color:var(--ink-soft);margin-bottom:26px;max-width:52ch;}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+  .hero-login-note{font-size:14px;color:var(--ink-soft);margin-top:18px;}
+  .hero-login-note a{color:var(--pine);font-weight:700;}
+  .hero-visual .img-placeholder{aspect-ratio:4/3;box-shadow:0 24px 48px rgba(23,64,60,.14);}
+
+  /* ============================================================
+     SECTION 2 — WHAT'S INCLUDED
+     ============================================================ */
+  .included{background:var(--white);}
+  .included .head{text-align:center;max-width:640px;margin:0 auto 48px;}
+  .included h2{font-size:clamp(26px,3vw,36px);margin-bottom:10px;}
+  .included .head p{color:var(--ink-soft);}
+  .inc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .inc-card{
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+    padding:28px 24px;display:flex;flex-direction:column;gap:12px;
+  }
+  .inc-card .icon{width:48px;height:48px;border-radius:12px;background:var(--sage-tint);display:flex;align-items:center;justify-content:center;font-size:22px;}
+  .inc-card h3{font-size:19px;}
+  .inc-card p{font-size:14.5px;color:var(--ink-soft);}
+
+  /* ============================================================
+     SECTION 3 — HOW ENROLLMENT WORKS (3 steps + waitlist logic)
+     ============================================================ */
+  .how{background:var(--sage-tint);}
+  .how .head{text-align:center;max-width:660px;margin:0 auto 48px;}
+  .how h2{font-size:clamp(26px,3vw,36px);margin-bottom:10px;}
+  .how .head p{color:var(--ink-soft);}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .step{background:var(--white);border-radius:var(--radius);padding:30px 26px;text-align:center;position:relative;}
+  .step .num{
+    width:52px;height:52px;border-radius:50%;background:var(--pine);color:var(--white);
+    font-family:var(--font-display);font-size:24px;display:flex;align-items:center;justify-content:center;
+    margin:0 auto 16px;
+  }
+  .step h3{font-size:19px;margin-bottom:8px;}
+  .step p{font-size:14.5px;color:var(--ink-soft);}
+  .how .why{
+    max-width:720px;margin:36px auto 0;text-align:center;font-size:15px;color:var(--ink-soft);
+    background:var(--marigold-soft);border-radius:var(--radius);padding:18px 26px;
+  }
+  .how .why strong{color:#8A5F16;}
+
+  /* ============================================================
+     SECTION 4 — WAITLIST EMAIL CAPTURE BAND
+     Primary conversion action while enrollment is closed.
+     ============================================================ */
+  .waitlist{background:var(--pine);color:var(--white);}
+  .waitlist .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding-top:64px;padding-bottom:64px;}
+  .waitlist .eyebrow{color:var(--marigold-soft);}
+  .waitlist h2{color:var(--white);font-size:clamp(26px,3.2vw,38px);margin-bottom:12px;}
+  .waitlist p{color:#CBDAD3;font-size:16.5px;max-width:50ch;}
+  .waitlist-card{background:var(--white);border-radius:var(--radius);padding:30px;color:var(--ink);box-shadow:0 20px 44px rgba(0,0,0,.22);}
+  .waitlist-card h3{font-size:20px;margin-bottom:6px;}
+  .waitlist-card p{font-size:14px;color:var(--ink-soft);margin-bottom:16px;}
+  /* WordPress note: wire this form to the Keap membership waitlist sequence */
+  .waitlist-form{display:flex;flex-direction:column;gap:12px;}
+  .waitlist-form input[type="email"]{
+    padding:13px 16px;border-radius:8px;border:1px solid var(--line);
+    font-family:var(--font-body);font-size:15px;
+  }
+  .waitlist-privacy{font-size:12px;color:var(--ink-soft);margin-top:10px;}
+
+  /* ============================================================
+     SECTION 5 — ALREADY A MEMBER? (login + two-account explainer)
+     Reduces the recurring "which login do I use" support emails.
+     ============================================================ */
+  .member{background:var(--white);}
+  .member .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start;padding-top:76px;padding-bottom:76px;}
+  .member h2{font-size:clamp(26px,3vw,36px);margin-bottom:14px;}
+  .member p.sub{color:var(--ink-soft);margin-bottom:22px;}
+  .login-card{
+    background:var(--sage-tint);border-radius:var(--radius);padding:30px;
+    border-top:5px solid var(--pine);
+  }
+  .login-card h3{font-size:20px;margin-bottom:8px;}
+  .login-card p{font-size:14.5px;color:var(--ink-soft);margin-bottom:18px;}
+  .accounts{display:grid;gap:14px;}
+  .account{
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px 22px;display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;
+  }
+  .account .tag{
+    font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    background:var(--sage-tint);color:var(--pine);padding:6px 12px;border-radius:6px;white-space:nowrap;
+  }
+  .account .tag.gold{background:var(--marigold-soft);color:#8A5F16;}
+  .account h4{font-family:var(--font-body);font-weight:700;font-size:15.5px;color:var(--pine);margin-bottom:2px;}
+  .account p{font-size:13.5px;color:var(--ink-soft);}
+  .account a{font-size:13.5px;font-weight:700;color:var(--pine);white-space:nowrap;}
+
+  /* ============================================================
+     SECTION 6 — SOCIAL PROOF: TESTIMONIALS + STATS
+     ============================================================ */
+  .proof{background:var(--sage-tint);}
+  .proof .head{text-align:center;max-width:620px;margin:0 auto 44px;}
+  .proof h2{font-size:clamp(26px,3vw,36px);}
+  .quote-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:48px;}
+  .quote{background:var(--white);border-radius:var(--radius);padding:28px 26px;font-size:15px;color:var(--ink-soft);}
+  .quote p{font-family:var(--font-display);font-style:italic;font-size:16.5px;color:var(--ink);margin-bottom:16px;}
+  .quote .who{display:flex;align-items:center;gap:12px;}
+  .quote .avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--sage) 0%,#5F8474 100%);display:flex;align-items:center;justify-content:center;color:var(--white);font-family:var(--font-display);font-size:16px;}
+  .quote strong{display:block;color:var(--pine);font-size:14px;}
+  .quote span{font-size:12.5px;}
+  .proof-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:760px;margin:0 auto;text-align:center;}
+  .proof-stats b{font-family:var(--font-display);font-size:36px;font-weight:500;color:var(--pine);display:block;line-height:1.1;}
+  .proof-stats span{font-size:13.5px;color:var(--ink-soft);}
+
+  /* ============================================================
+     SECTION 7 — FAQ
+     ============================================================ */
+  .faq{background:var(--white);}
+  .faq .head{text-align:center;max-width:620px;margin:0 auto 40px;}
+  .faq h2{font-size:clamp(26px,3vw,36px);}
+  .faq-list{max-width:780px;margin:0 auto;display:grid;gap:12px;}
+  details{
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px 22px;
+  }
+  details[open]{border-color:var(--sage);}
+  summary{
+    font-weight:700;font-size:16px;color:var(--pine);cursor:pointer;list-style:none;
+    display:flex;justify-content:space-between;align-items:center;gap:16px;
+  }
+  summary::-webkit-details-marker{display:none;}
+  summary::after{content:"+";font-family:var(--font-display);font-size:22px;color:var(--marigold);flex-shrink:0;}
+  details[open] summary::after{content:"–";}
+  details p{font-size:14.5px;color:var(--ink-soft);margin-top:12px;}
+
+  /* ============================================================
+     SECTION 8 — FINAL CTA BAND
+     ============================================================ */
+  .final-cta{background:var(--marigold-soft);}
+  .final-cta .wrap{display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap;padding-top:48px;padding-bottom:48px;}
+  .final-cta h2{font-size:clamp(22px,2.6vw,30px);margin-bottom:6px;}
+  .final-cta p{color:var(--ink-soft);font-size:15.5px;}
+
+  /* ============================================================
+     FOOTER — shared with other pages
+     ============================================================ */
+  footer{background:#0F2E2B;color:#A9BFB7;font-size:14.5px;}
+  footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-top:60px;padding-bottom:44px;}
+  footer h4{color:var(--white);font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px;font-family:var(--font-body);}
+  footer ul{list-style:none;display:grid;gap:10px;}
+  footer a{text-decoration:none;}
+  footer a:hover{color:var(--white);}
+  .foot-brand p{margin-top:14px;max-width:34ch;}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.12);}
+  .foot-bottom .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:20px;padding-bottom:20px;font-size:13px;}
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 980px){
+    .hero .wrap,.waitlist .wrap,.member .wrap{grid-template-columns:1fr;gap:40px;}
+    .inc-grid,.steps,.quote-grid,.proof-stats{grid-template-columns:repeat(2,1fr);}
+    footer .wrap{grid-template-columns:1fr 1fr;}
+    nav ul{display:none;}
+    .menu-note{display:block;}
+  }
+  @media (max-width: 620px){
+    .section-pad{padding:52px 0;}
+    .inc-grid,.steps,.quote-grid,.proof-stats{grid-template-columns:1fr;}
+    footer .wrap{grid-template-columns:1fr;}
+    .account{grid-template-columns:1fr;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;animation:none !important;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER / NAVIGATION
+     Membership is now a first-class nav item (fixes the "invisible
+     membership" flaw), and MEMBER LOGIN is always visible for
+     existing members who come hunting for it.
+     ============================================================ -->
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="index.html" aria-label="YogaUOnline home">
+      <span class="logo-mark" aria-hidden="true"></span>
+      <span class="logo-text">YogaUOnline<small>Wellness education for life</small></span>
+    </a>
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="pose-library-blog-teal.html">Read</a></li>
+        <li><a href="practice-channel-teal.html">Practice</a></li>
+        <li><a href="#">Courses</a></li>
+        <li><a href="#" class="active">Membership</a></li>
+        <li><a href="#">Age Strong</a></li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <a class="btn btn-outline btn-login" href="#member-login">Member Login</a>
+      <span class="menu-note">☰ Menu</span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============================================================
+     SECTION 1 — HERO: THE YOGAU ONLINE MEMBERSHIP
+     Enrollment-closed mode: waitlist is the primary CTA.
+     ============================================================ -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="status-badge"><span class="dot" aria-hidden="true"></span>Enrollment opens September 2026 — doors open twice a year</span>
+      <h1>Practice with us, <em>all year long.</em></h1>
+      <p class="lede">The YogaUOnline Membership brings together everything we teach — live monthly classes, the full Practice Channel, Yoga Lab lessons, and a warm community of practitioners who believe the best years of practice are still ahead.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-gold" href="#waitlist">Join the Waitlist</a>
+        <a class="btn btn-outline" href="#included">See What's Included</a>
+      </div>
+      <p class="hero-login-note">Already a member? <a href="#member-login">Log in here</a> — no need to wait for enrollment.</p>
+    </div>
+    <div class="hero-visual">
+      <div class="img-placeholder">Image placeholder<br>Members practicing together in a live online class</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 2 — WHAT'S INCLUDED
+     ============================================================ -->
+<section class="included section-pad" id="included">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Membership benefits</p>
+      <h2>Everything you need for a steady, supported practice</h2>
+      <p>One membership, every door open — designed for practitioners and teachers who want depth, consistency, and expert guidance.</p>
+    </div>
+    <div class="inc-grid">
+      <div class="inc-card">
+        <span class="icon" aria-hidden="true">🧘</span>
+        <h3>Monthly Live Classes</h3>
+        <p>Practice live with our senior teachers every month — with time for your questions at the end.</p>
+      </div>
+      <div class="inc-card">
+        <span class="icon" aria-hidden="true">▶️</span>
+        <h3>Full Practice Channel Access</h3>
+        <p>Unlimited access to our complete library of practices — filter by level, length, focus, and wellness goal.</p>
+      </div>
+      <div class="inc-card">
+        <span class="icon" aria-hidden="true">🔬</span>
+        <h3>Yoga Lab Lessons</h3>
+        <p>Short, focused lessons that break down poses and principles so you can practice with precision and confidence.</p>
+      </div>
+      <div class="inc-card">
+        <span class="icon" aria-hidden="true">💬</span>
+        <h3>Member-Only Q&amp;As</h3>
+        <p>Bring your questions about practice, healthy aging, and teaching to live sessions with our faculty.</p>
+      </div>
+      <div class="inc-card">
+        <span class="icon" aria-hidden="true">🤝</span>
+        <h3>A Community That Practices</h3>
+        <p>Connect with fellow practitioners around the world who share your commitment to aging strong.</p>
+      </div>
+      <div class="inc-card">
+        <span class="icon" aria-hidden="true">🌿</span>
+        <h3>Age Strong Resources</h3>
+        <p>Priority access to our osteoporosis and healthy-aging content, including reports, talks, and workshops.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 3 — HOW ENROLLMENT WORKS
+     Explains the twice-a-year model and why the waitlist matters.
+     ============================================================ -->
+<section class="how section-pad">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">How it works</p>
+      <h2>Doors open twice a year — here's how to be ready</h2>
+      <p>We open enrollment only twice a year so every new group of members gets a warm welcome and our full attention.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <h3>Join the waitlist</h3>
+        <p>Leave your email below — it takes ten seconds, and there's no commitment.</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <h3>Get notified first</h3>
+        <p>Waitlist members hear about opening day before anyone else — plus early-bird bonuses.</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <h3>Start practicing</h3>
+        <p>When doors open, claim your spot and step into a full year of guided, supported practice.</p>
+      </div>
+    </div>
+    <p class="why"><strong>While you wait:</strong> waitlist members receive our free weekly practice tips and seasonal workshops — so your practice grows even before you join.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 4 — WAITLIST EMAIL CAPTURE BAND
+     Primary conversion action. Wire to Keap waitlist sequence
+     in the WordPress build.
+     ============================================================ -->
+<section class="waitlist" id="waitlist">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Enrollment currently closed</p>
+      <h2>Be first in line when doors open</h2>
+      <p>Join the waitlist and we'll let you know the moment enrollment opens in September — along with early-bird pricing for waitlist members.</p>
+    </div>
+    <div class="waitlist-card">
+      <h3>Join the Membership Waitlist</h3>
+      <p>Free to join. No spam — just the opening announcement and helpful practice content.</p>
+      <form class="waitlist-form" onsubmit="event.preventDefault(); alert('Mockup only — form connects to Keap in implementation.');">
+        <label for="wl-email" style="position:absolute;left:-9999px;">Email address</label>
+        <input id="wl-email" type="email" placeholder="Your email address" required>
+        <button class="btn btn-gold" type="submit">Join the Waitlist</button>
+      </form>
+      <p class="waitlist-privacy">We respect your inbox. Unsubscribe anytime.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 5 — ALREADY A MEMBER? (login + two-account explainer)
+     Directly addresses the recurring support emails about
+     "which login do I use?" and the two-accounts confusion.
+     ============================================================ -->
+<section class="member" id="member-login">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Already a member?</p>
+      <h2>Log in and pick up right where you left off</h2>
+      <p class="sub">You don't need an email link to access your membership — you can always log in right here.</p>
+      <div class="login-card">
+        <h3>Member Login</h3>
+        <p>Access your live class schedule, the Practice Channel, Yoga Lab, and your member community.</p>
+        <a class="btn btn-primary" href="#">Log In to Your Membership</a>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-size:20px;margin-bottom:14px;">Which login do I use? A quick guide</h3>
+      <div class="accounts">
+        <div class="account">
+          <span class="tag">Membership</span>
+          <div>
+            <h4>Your Membership account</h4>
+            <p>For live classes, the Practice Channel, Yoga Lab, and community. This is the login above.</p>
+          </div>
+          <a href="#">Log in →</a>
+        </div>
+        <div class="account">
+          <span class="tag gold">Courses</span>
+          <div>
+            <h4>Your Course Library account</h4>
+            <p>If you've purchased individual courses, those live in our course platform with a separate login.</p>
+          </div>
+          <a href="#">Log in →</a>
+        </div>
+      </div>
+      <p style="font-size:14px;color:var(--ink-soft);margin-top:16px;">Some longtime students have both accounts — that's normal! They use the same email address but separate passwords. Still stuck? <a href="#" style="font-weight:700;color:var(--pine);">Contact us</a> and we'll sort it out.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 6 — SOCIAL PROOF: TESTIMONIALS + STATS
+     Placeholder quotes — replace with real member testimonials.
+     ============================================================ -->
+<section class="proof section-pad">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">From our members</p>
+      <h2>Practicing together, aging strong together</h2>
+    </div>
+    <div class="quote-grid">
+      <div class="quote">
+        <p>"The monthly live classes are the anchor of my week. At 63, my balance and strength are better than they were at 50."</p>
+        <div class="who">
+          <span class="avatar">MK</span>
+          <div><strong>Margaret K.</strong><span>Member for 3 years</span></div>
+        </div>
+      </div>
+      <div class="quote">
+        <p>"As a yoga teacher, the Yoga Lab lessons have transformed how I cue poses for my older students. Worth it for that alone."</p>
+        <div class="who">
+          <span class="avatar">DR</span>
+          <div><strong>Diane R.</strong><span>Yoga teacher &amp; member</span></div>
+        </div>
+      </div>
+      <div class="quote">
+        <p>"After my osteoporosis diagnosis, I didn't know what was safe. The guidance here gave me my confidence back."</p>
+        <div class="who">
+          <span class="avatar">SL</span>
+          <div><strong>Susan L.</strong><span>Member for 1 year</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="proof-stats">
+      <div><b>15+</b><span>Years of yoga education online</span></div>
+      <div><b>1,000+</b><span>Practices, lessons &amp; articles</span></div>
+      <div><b>2×</b><span>Enrollment windows per year</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 7 — FAQ
+     ============================================================ -->
+<section class="faq section-pad">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Questions?</p>
+      <h2>Frequently asked questions</h2>
+    </div>
+    <div class="faq-list">
+      <details>
+        <summary>When does enrollment open?</summary>
+        <p>We open the doors twice a year — the next enrollment window opens in September 2026. Waitlist members are notified first and receive early-bird pricing.</p>
+      </details>
+      <details>
+        <summary>How much does the membership cost?</summary>
+        <p>Membership pricing is announced when enrollment opens. Waitlist members always receive the best available rate. [Placeholder — confirm pricing display strategy with Eva.]</p>
+      </details>
+      <details>
+        <summary>I'm a member but I have two logins — which one do I use?</summary>
+        <p>Your <strong>Membership account</strong> covers live classes, the Practice Channel, and Yoga Lab. If you've also purchased individual courses, those live in our <strong>Course Library</strong> with a separate password (same email). See the login guide above, or contact us and we'll sort it out.</p>
+      </details>
+      <details>
+        <summary>Can I cancel anytime?</summary>
+        <p>Yes. You can cancel your membership at any time — no phone calls, no hoops. You'll keep access through the end of your billing period.</p>
+      </details>
+      <details>
+        <summary>Is this right for me if I'm a beginner? Or over 50? Or a teacher?</summary>
+        <p>Yes, yes, and yes. Our practices are designed to be tailored to your body — with options by level, length, and focus. Many members are over 50, many are teachers, and many are both.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 8 — FINAL CTA BAND
+     ============================================================ -->
+<section class="final-cta">
+  <div class="wrap">
+    <div>
+      <h2>Ready when the doors open?</h2>
+      <p>Join the waitlist today — it's free, and you'll be the first to know.</p>
+    </div>
+    <a class="btn btn-primary" href="#waitlist">Join the Waitlist</a>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER — shared with other pages, Membership links added
+     ============================================================ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-brand">
+      <span class="logo-text" style="color:#fff;">YogaUOnline</span>
+      <p>Wellness education for life — trusted yoga education for practitioners, teachers, and everyone committed to aging strong.</p>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <ul>
+        <li><a href="pose-library-blog-teal.html">Articles</a></li>
+        <li><a href="#">Courses</a></li>
+        <li><a href="#">Free reports</a></li>
+        <li><a href="#">YouTube</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Membership</h4>
+      <ul>
+        <li><a href="#waitlist">Join the waitlist</a></li>
+        <li><a href="#member-login">Member login</a></li>
+        <li><a href="practice-channel-teal.html">Practice Channel</a></li>
+        <li><a href="#">Yoga Lab</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About us</a></li>
+        <li><a href="#">Our teachers</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Help &amp; FAQs</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div class="wrap">
+      <span>© 2026 YogaUOnline. All rights reserved.</span>
+      <span><a href="#">Privacy</a> · <a href="#">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
