@@ -52,6 +52,9 @@
     color:var(--pine-soft);font-size:12px;font-weight:600;letter-spacing:.06em;
     text-transform:uppercase;text-align:center;padding:14px;
   }
+  .photo{position:relative;overflow:hidden;padding:0;background:#fff;}
+  .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .photo.contain img{object-fit:contain;}
 
   /* ============================================================
      HEADER — shared style + NEW simplified navigation
@@ -246,12 +249,12 @@
     <div>
       <p class="eyebrow">Yoga 2.0 Pose Library</p>
       <h1>Yoga For Every Body</h1>
-      <p class="quote">"Crazy times call for yoga." — Jivana Heyman</p>
+      <p class="quote">"Yoga is not about touching your toes. It's about what you learn on the way down." — Judith Hanson Lasater</p>
       <p class="lede">Yoga is not one-size-fits-all. Explore 1,000+ Yoga 2.0 pose variations to find out what works for YOUR body. Discover new ways to reap the many benefits of yoga.</p>
       <a class="btn btn-gold" href="#">Get a Free 7-Day Trial</a>
     </div>
     <div class="hero-visual">
-      <div class="img-placeholder">Image placeholder<br>Practitioner in a supported Boat Pose variation</div>
+      <div class="img-placeholder photo" style="aspect-ratio:4/3;"><img src="images/hero-boat-pose.jpg" alt="Practitioner in a joyful Boat Pose variation" loading="lazy"></div>
     </div>
   </div>
 </section>
@@ -263,12 +266,12 @@
 <section class="categories section-pad">
   <div class="wrap">
     <div class="cat-grid">
-      <a class="cat-tile" href="#"><div class="img-placeholder">Pose photo</div><h3>All Yoga Poses</h3></a>
-      <a class="cat-tile" href="#"><div class="img-placeholder">Pose photo</div><h3>Yoga Poses by Type</h3></a>
-      <a class="cat-tile" href="#"><div class="img-placeholder">Pose photo</div><h3>Yoga Poses by Benefit</h3></a>
-      <a class="cat-tile" href="#"><div class="img-placeholder">Pose photo</div><h3>Yoga Poses by Anatomy</h3></a>
-      <a class="cat-tile" href="#"><div class="img-placeholder">Pose photo</div><h3>Yoga Poses A–Z</h3></a>
-      <a class="cat-tile" href="#"><div class="img-placeholder">Pose photo</div><h3>Yoga 2.0 Blog</h3></a>
+      <a class="cat-tile" href="#"><div class="img-placeholder photo" style="aspect-ratio:16/9;"><img src="images/cat-all-poses.jpg" alt="Supported squat with rolled blanket" loading="lazy"></div><h3>All Yoga Poses</h3></a>
+      <a class="cat-tile" href="#"><div class="img-placeholder photo" style="aspect-ratio:16/9;"><img src="images/cat-by-type.jpg" alt="Seated chair pose with bolster" loading="lazy"></div><h3>Yoga Poses by Type</h3></a>
+      <a class="cat-tile" href="#"><div class="img-placeholder photo" style="aspect-ratio:16/9;"><img src="images/cat-by-benefit.jpg" alt="Plank pose with block support" loading="lazy"></div><h3>Yoga Poses by Benefit</h3></a>
+      <a class="cat-tile" href="#"><div class="img-placeholder photo" style="aspect-ratio:16/9;"><img src="images/cat-by-anatomy.jpg" alt="Chair-seated pose with block" loading="lazy"></div><h3>Yoga Poses by Anatomy</h3></a>
+      <a class="cat-tile" href="#"><div class="img-placeholder photo" style="aspect-ratio:16/9;"><img src="images/cat-a-z.jpg" alt="Seated hero pose on block" loading="lazy"></div><h3>Yoga Poses A–Z</h3></a>
+      <a class="cat-tile" href="#"><div class="img-placeholder photo" style="aspect-ratio:16/9;"><img src="images/cat-blog.jpg" alt="Chair-supported side plank variation" loading="lazy"></div><h3>Yoga 2.0 Blog</h3></a>
     </div>
   </div>
 </section>
@@ -324,7 +327,7 @@
       <h2>In-Depth Pose Analysis and Teaching Tips</h2>
     </div>
     <div class="video-feature">
-      <div class="img-placeholder">Video placeholder<br>Yoga Pose Library intro — Downward Dog, 6 variation stations</div>
+      <div class="img-placeholder photo" style="aspect-ratio:16/9;"><img src="images/video-down-dog.jpg" alt="Yoga Pose Library intro video — six preparatory poses for Down Dog" loading="lazy"></div>
       <span class="play" aria-hidden="true"><span>▶</span></span>
     </div>
     <div class="value-cols">
