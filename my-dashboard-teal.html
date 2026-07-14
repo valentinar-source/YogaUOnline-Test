@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Dashboard — YogaUOnline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     DESIGN TOKENS — Option 1 theme (teal/pine + marigold)
+     Shared system with the other teal mockups
+     ============================================================ */
+  :root{
+    --pine:       #17403C;
+    --pine-soft:  #2A5A54;
+    --sage:       #8FAF9C;
+    --sage-tint:  #EDF3EE;
+    --marigold:   #C98A2D;
+    --marigold-soft:#F5E7CE;
+    --paper:      #FCFAF5;
+    --ink:        #24312E;
+    --ink-soft:   #5C6B66;
+    --line:       #E3E0D6;
+    --white:      #FFFFFF;
+    --radius: 10px;
+    --maxw: 1120px;
+    --font-display: "Fraunces", Georgia, serif;
+    --font-body: "Karla", -apple-system, sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:var(--font-body);color:var(--ink);background:var(--paper);line-height:1.6;font-size:16.5px;}
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  h1,h2,h3{font-family:var(--font-display);font-weight:500;line-height:1.15;color:var(--pine);}
+  .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--marigold);margin-bottom:10px;}
+  .btn{display:inline-block;font-family:var(--font-body);font-weight:700;font-size:15px;padding:13px 26px;border-radius:999px;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:all .2s ease;}
+  .btn-primary{background:var(--pine);color:var(--white);}
+  .btn-primary:hover{background:var(--pine-soft);}
+  .btn-gold{background:var(--marigold);color:var(--white);}
+  .btn-gold:hover{background:#B0781F;}
+  .btn-outline{border-color:var(--pine);color:var(--pine);background:transparent;}
+  .btn-outline:hover{background:var(--pine);color:var(--white);}
+  .btn:focus-visible{outline:3px solid var(--marigold);outline-offset:2px;}
+  .img-placeholder{
+    background:linear-gradient(135deg,#DCE8DE 0%,#C4D8C9 60%,#B2CBBA 100%);
+    border-radius:var(--radius);display:flex;align-items:center;justify-content:center;
+    color:var(--pine-soft);font-size:12px;font-weight:600;letter-spacing:.06em;
+    text-transform:uppercase;text-align:center;padding:14px;
+  }
+  .new-badge{
+    display:inline-block;background:var(--marigold);color:var(--white);
+    font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    padding:2px 8px;border-radius:4px;margin-left:8px;vertical-align:middle;
+  }
+
+  /* ============================================================
+     HEADER — shared teal header + account subnav
+     ============================================================ */
+  header{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0;gap:24px;}
+  .logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+  .logo-mark{width:40px;height:40px;border-radius:50%;border:2.5px solid var(--pine);position:relative;flex-shrink:0;
+    background:radial-gradient(circle at 50% 38%, var(--marigold) 0 5px, transparent 5px);}
+  .logo-mark::after{content:"";position:absolute;left:50%;top:46%;transform:translateX(-50%);width:3px;height:14px;background:var(--marigold);border-radius:2px;}
+  .logo-text{font-family:var(--font-display);font-size:22px;color:var(--pine);font-weight:600;line-height:1;}
+  .logo-text small{display:block;font-family:var(--font-body);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-top:3px;}
+  nav ul{display:flex;gap:26px;list-style:none;align-items:center;}
+  nav a{text-decoration:none;font-weight:600;font-size:15px;color:var(--ink);}
+  nav a:hover,nav a.active{color:var(--pine);border-bottom:2px solid var(--marigold);padding-bottom:2px;}
+  .menu-note{display:none;font-size:13px;color:var(--ink-soft);}
+  .subnav{background:var(--sage-tint);border-bottom:1px solid var(--line);}
+  .subnav .wrap{display:flex;gap:26px;padding-top:12px;padding-bottom:12px;flex-wrap:wrap;}
+  .subnav a{font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--ink-soft);}
+  .subnav a.active,.subnav a:hover{color:var(--pine);border-bottom:2px solid var(--marigold);padding-bottom:2px;}
+
+  /* ============================================================
+     SECTION 1 — WELCOME HERO: NAMASTE, VALENTINA
+     ============================================================ */
+  .dash-hero{
+    background:linear-gradient(100deg,rgba(23,64,60,.88) 0%,rgba(42,90,84,.66) 55%,rgba(143,175,156,.35) 100%),
+      linear-gradient(135deg,#C4D8C9 0%,#8FAF9C 100%);
+    color:var(--white);
+  }
+  .dash-hero .wrap{padding-top:64px;padding-bottom:64px;max-width:720px;margin:0;padding-left:max(24px,calc((100vw - var(--maxw))/2 + 24px));}
+  .dash-hero h1{color:var(--white);font-size:clamp(32px,4.4vw,48px);text-transform:uppercase;letter-spacing:.02em;margin-bottom:12px;}
+  .dash-hero p{font-family:var(--font-display);font-style:italic;font-size:17px;color:#DCE8E2;max-width:52ch;}
+
+  /* ============================================================
+     SECTION 2 — DASHBOARD LAYOUT: SIDEBAR + CONTENT
+     ============================================================ */
+  .dash{padding:56px 0 76px;}
+  .dash .wrap{display:grid;grid-template-columns:280px 1fr;gap:48px;align-items:start;}
+
+  /* Sidebar */
+  .side{position:sticky;top:96px;}
+  .side .user{display:flex;align-items:center;gap:14px;padding-bottom:20px;border-bottom:1px solid var(--line);margin-bottom:20px;}
+  .side .avatar{
+    width:56px;height:56px;border-radius:50%;flex-shrink:0;
+    background:linear-gradient(135deg,var(--sage) 0%,#5F8474 100%);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--font-display);font-size:20px;color:var(--white);
+  }
+  .side .user strong{display:block;font-size:15.5px;color:var(--pine);}
+  .side .user span{font-size:12.5px;color:var(--ink-soft);}
+  .side h4{font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--pine);margin:18px 0 8px;}
+  .side ul{list-style:none;display:grid;gap:6px;}
+  .side ul ul{margin:6px 0 4px 14px;gap:5px;}
+  .side a{text-decoration:none;font-size:14px;color:var(--ink-soft);font-weight:600;}
+  .side a:hover,.side a.active{color:var(--pine);}
+  .side .top-link{font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--pine-soft);}
+  /* NEW: My Yearly Membership sidebar button (below MY SEQUENCES) */
+  .side .yearly-btn{
+    display:block;margin-top:18px;background:var(--marigold-soft);
+    border:2px solid var(--marigold);border-radius:var(--radius);
+    padding:14px 16px;text-decoration:none;
+    font-weight:700;font-size:14px;color:#8A5F16;text-align:center;
+    transition:background .2s ease;
+  }
+  .side .yearly-btn:hover{background:var(--marigold);color:var(--white);}
+
+  /* Content */
+  .panel{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:32px;margin-bottom:28px;}
+  .panel h2{font-size:24px;margin-bottom:6px;}
+  .panel > p.sub{font-size:14.5px;color:var(--ink-soft);margin-bottom:24px;}
+
+  /* My Courses (WordPress) */
+  .course-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  .course-card{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:box-shadow .18s ease;}
+  .course-card:hover{box-shadow:0 14px 28px rgba(23,64,60,.10);}
+  .course-card .img-placeholder{aspect-ratio:16/9;border-radius:0;}
+  .course-body{padding:18px 20px 20px;flex:1;display:flex;flex-direction:column;}
+  .course-body h3{font-size:17px;line-height:1.3;margin-bottom:4px;}
+  .course-body .byline{font-family:var(--font-display);font-style:italic;font-size:13px;color:#9AA8A2;margin-bottom:12px;}
+  .progress{height:8px;background:var(--sage-tint);border-radius:999px;overflow:hidden;margin-bottom:8px;}
+  .progress b{display:block;height:100%;background:var(--sage);border-radius:999px;}
+  .course-body small{font-size:12.5px;color:var(--ink-soft);margin-bottom:12px;}
+  .course-body .btn{padding:10px 18px;font-size:13px;align-self:flex-start;margin-top:auto;}
+
+  /* Yearly Membership block (links out to Kajabi) */
+  .kajabi{
+    background:var(--pine);color:var(--white);border-radius:var(--radius);
+    padding:34px 32px;display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center;
+    position:relative;overflow:hidden;
+  }
+  .kajabi::before{ /* enso accent */
+    content:"";position:absolute;width:190px;height:190px;right:-50px;top:-50px;
+    border:3px solid var(--marigold);border-radius:50%;border-left-color:transparent;
+    transform:rotate(-30deg);opacity:.4;
+  }
+  .kajabi h2{color:var(--white);font-size:24px;margin-bottom:8px;}
+  .kajabi p{color:#CBDAD3;font-size:14.5px;margin-bottom:18px;max-width:48ch;}
+  .kajabi ul{list-style:none;display:grid;gap:8px;font-size:14px;color:#DCE8E2;margin-bottom:22px;}
+  .kajabi li::before{content:"✓ ";color:var(--marigold);font-weight:700;}
+  .kajabi-side{text-align:center;position:relative;z-index:1;}
+  .kajabi-side .status{
+    background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.25);
+    border-radius:var(--radius);padding:18px;margin-bottom:14px;font-size:13.5px;color:#CBDAD3;
+  }
+  .kajabi-side .status strong{display:block;color:var(--white);font-size:15px;}
+  .kajabi-note{font-size:12px;color:#9FB6AD;margin-top:10px;}
+
+  /* ============================================================
+     FOOTER — shared
+     ============================================================ */
+  footer{background:#0F2E2B;color:#A9BFB7;font-size:14.5px;}
+  footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-top:56px;padding-bottom:40px;}
+  footer h4{color:var(--white);font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px;font-family:var(--font-body);}
+  footer ul{list-style:none;display:grid;gap:10px;}
+  footer a{text-decoration:none;}
+  footer a:hover{color:var(--white);}
+  .foot-brand p{margin-top:14px;max-width:34ch;}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.12);}
+  .foot-bottom .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:18px;padding-bottom:18px;font-size:13px;}
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 980px){
+    .dash .wrap{grid-template-columns:1fr;}
+    .side{position:static;}
+    .course-grid{grid-template-columns:1fr;}
+    .kajabi{grid-template-columns:1fr;}
+    footer .wrap{grid-template-columns:1fr 1fr;}
+    nav ul{display:none;}
+    .menu-note{display:block;}
+  }
+  @media (max-width: 620px){
+    footer .wrap{grid-template-columns:1fr;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;animation:none !important;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER — simplified nav + My Dashboard active
+     ============================================================ -->
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="index.html" aria-label="YogaUOnline home">
+      <span class="logo-mark" aria-hidden="true"></span>
+      <span class="logo-text">YogaUOnline<small>Wellness education for life</small></span>
+    </a>
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="read-teal.html">Articles</a></li>
+        <li><a href="option-1-teal.html#pathways">Courses</a></li>
+        <li><a href="membership-teal.html">Membership</a></li>
+        <li><a href="practice-channel-teal.html">Videos</a></li>
+        <li><a href="option-1-teal.html#agestrong">Age Strong</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-outline" style="padding:10px 20px;font-size:14px;" href="#">My Dashboard</a>
+    <span class="menu-note">☰ Menu</span>
+  </div>
+  <!-- Account subnav (mirrors the WordPress account area) -->
+  <div class="subnav">
+    <div class="wrap">
+      <a href="#" class="active">My Account</a>
+      <a href="#my-courses">My Courses</a>
+      <a href="#">My Practices</a>
+      <a href="#">My Pose Library</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============================================================
+     SECTION 1 — WELCOME HERO
+     ============================================================ -->
+<section class="dash-hero">
+  <div class="wrap">
+    <h1>Namaste, Valentina</h1>
+    <p>Welcome to Your Dashboard! Look below to find your Courses, your Favorite Practices, or Favorite Poses. To update your account info, simply look under My Account.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 2 — DASHBOARD: SIDEBAR + CONTENT
+     ============================================================ -->
+<section class="dash">
+  <div class="wrap">
+
+    <!-- SIDEBAR — mirrors the WP account menu, with the NEW
+         "My Yearly Membership" button below MY SEQUENCES -->
+    <aside class="side">
+      <div class="user">
+        <span class="avatar">VR</span>
+        <div>
+          <strong>Valentina Rodriguez</strong>
+          <span>valentinar@yogauonline.com</span>
+        </div>
+      </div>
+      <h4>My Account</h4>
+      <ul>
+        <li><a href="#" class="active">My Profile</a></li>
+        <li><a href="#">My Password</a></li>
+        <li><a href="#">My Cards</a></li>
+        <li><a href="#">My Course Orders</a></li>
+        <li><a href="#">My Subscriptions</a></li>
+      </ul>
+      <ul style="margin-top:16px;">
+        <li><a class="top-link" href="#my-courses">My Courses</a></li>
+        <li><a class="top-link" href="#">My Practices</a></li>
+        <li><a class="top-link" href="#">My Pose Library</a></li>
+        <li><a class="top-link" href="#">My Sequences</a></li>
+      </ul>
+      <!-- NEW: Yearly Membership entry point → Kajabi -->
+      <a class="yearly-btn" href="#my-membership">My Yearly Membership <span class="new-badge">New</span></a>
+    </aside>
+
+    <!-- CONTENT -->
+    <div>
+
+      <!-- MY COURSES (WordPress course platform) -->
+      <div class="panel" id="my-courses">
+        <p class="eyebrow">WordPress · Course Library</p>
+        <h2>My Courses</h2>
+        <p class="sub">Your purchased courses live here — pick up right where you left off.</p>
+        <div class="course-grid">
+          <a class="course-card" href="#">
+            <div class="img-placeholder">Course image</div>
+            <div class="course-body">
+              <h3>Yoga with Weights: Building Strength for Bone Health and Metabolic Resilience</h3>
+              <span class="byline">A 4-Week Yoga for Strength Training Series</span>
+              <div class="progress"><b style="width:65%;"></b></div>
+              <small>65% complete · Module 3 of 4</small>
+              <span class="btn btn-primary">Continue Course</span>
+            </div>
+          </a>
+          <a class="course-card" href="#">
+            <div class="img-placeholder">Course image</div>
+            <div class="course-body">
+              <h3>Yoga for Core Integrity and Fall Prevention</h3>
+              <span class="byline">A Yoga Practice Series with Lynn Crimando</span>
+              <div class="progress"><b style="width:20%;"></b></div>
+              <small>20% complete · Module 1 of 5</small>
+              <span class="btn btn-primary">Continue Course</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- NEW: YEARLY MEMBERSHIP BLOCK → links out to Kajabi -->
+      <div class="kajabi" id="my-membership">
+        <div>
+          <p class="eyebrow" style="color:var(--marigold-soft);">Yearly Membership <span class="new-badge">New</span></p>
+          <h2>Your YogaUOnline Membership</h2>
+          <p>Your membership content — live classes, the Practice Channel, Yoga Lab, and community — lives in our membership portal.</p>
+          <ul>
+            <li>Monthly live classes &amp; member Q&amp;As</li>
+            <li>Full Practice Channel access</li>
+            <li>Yoga Lab lessons &amp; community</li>
+          </ul>
+          <!-- WordPress note: this button links out to the Kajabi member portal -->
+          <a class="btn btn-gold" href="#" title="Opens the Kajabi member portal">Go to My Membership →</a>
+          <p class="kajabi-note">Opens your membership portal (Kajabi) in a new tab — you may be asked to log in with your membership password.</p>
+        </div>
+        <div class="kajabi-side">
+          <div class="status">
+            <strong>Membership: Active</strong>
+            Yearly plan · Renews March 2027
+          </div>
+          <div class="status">
+            <strong>Next live class</strong>
+            Thursday, July 16 · A Taste of Osteo
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-brand">
+      <span class="logo-text" style="color:#fff;">YogaUOnline</span>
+      <p>Wellness education for life — trusted yoga education for practitioners, teachers, and everyone committed to aging strong.</p>
+    </div>
+    <div>
+      <h4>My Account</h4>
+      <ul>
+        <li><a href="#">My Profile</a></li>
+        <li><a href="#my-courses">My Courses</a></li>
+        <li><a href="#my-membership">My Yearly Membership</a></li>
+        <li><a href="#">Log out</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="read-teal.html">Articles</a></li>
+        <li><a href="practice-channel-teal.html">Videos</a></li>
+        <li><a href="pose-library-teal.html">Pose Library</a></li>
+        <li><a href="membership-teal.html">Membership</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About us</a></li>
+        <li><a href="#">Our teachers</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Help &amp; FAQs</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div class="wrap">
+      <span>© 2026 YogaUOnline. All rights reserved.</span>
+      <span><a href="#">Privacy</a> · <a href="#">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
