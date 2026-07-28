@@ -13,15 +13,15 @@
      Shared system with option-1-teal.html and subpages
      ============================================================ */
   :root{
-    --pine:       #17403C;
-    --pine-soft:  #2A5A54;
-    --sage:       #8FAF9C;
-    --sage-tint:  #EDF3EE;
+    --pine:       #403D52;   /* slate purple primary */
+    --pine-soft:  #545070;
+    --sage:       #655F81;   /* plum accent */
+    --sage-tint:  #E0E6DA;   /* light sage (from #CCD6C2) */
     --marigold:   #C98A2D;
     --marigold-soft:#F5E7CE;
     --paper:      #FCFAF5;
-    --ink:        #24312E;
-    --ink-soft:   #5C6B66;
+    --ink:        #403D52;
+    --ink-soft:   #6A667E;
     --line:       #E3E0D6;
     --white:      #FFFFFF;
     --radius: 10px;
@@ -39,18 +39,18 @@
   .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--marigold);margin-bottom:14px;}
   .section-pad{padding:76px 0;}
   .btn{display:inline-block;font-family:var(--font-body);font-weight:700;font-size:15px;padding:14px 28px;border-radius:999px;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:all .2s ease;}
-  .btn-primary{background:var(--pine);color:var(--white);}
+  .btn-primary{background:linear-gradient(120deg,#17403C 0%,#2E3A4E 55%,#403D52 100%);color:var(--white);}
   .btn-primary:hover{background:var(--pine-soft);}
   .btn-gold{background:var(--marigold);color:var(--white);}
   .btn-gold:hover{background:#B0781F;}
   .btn-outline{border-color:var(--pine);color:var(--pine);background:transparent;}
-  .btn-outline:hover{background:var(--pine);color:var(--white);}
+  .btn-outline:hover{background:linear-gradient(120deg,#17403C 0%,#2E3A4E 55%,#403D52 100%);color:var(--white);}
   .btn-white-outline{border-color:var(--white);color:var(--white);background:transparent;}
   .btn-white-outline:hover{background:var(--white);color:var(--pine);}
   .btn:focus-visible{outline:3px solid var(--marigold);outline-offset:2px;}
   input:focus-visible{outline:3px solid var(--marigold);outline-offset:1px;}
   .img-placeholder{
-    background:linear-gradient(135deg,#DCE8DE 0%,#C4D8C9 60%,#B2CBBA 100%);
+    background:linear-gradient(135deg,#E2E0EC 0%,#CFCCDE 60%,#BDBACF 100%);
     border-radius:var(--radius);display:flex;align-items:center;justify-content:center;
     color:var(--pine-soft);font-size:12px;font-weight:600;letter-spacing:.06em;
     text-transform:uppercase;text-align:center;padding:14px;
@@ -81,10 +81,10 @@
      Enrollment-closed mode: status badge + waitlist CTA,
      plus a secondary member-login path.
      ============================================================ */
-  .hero{background:linear-gradient(180deg,var(--sage-tint) 0%,var(--paper) 100%);}
+  .hero{background:linear-gradient(165deg,#EFEDF6 0%,#E0E6DA 55%,var(--paper) 100%);}
   .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;padding-top:68px;padding-bottom:68px;}
   .status-badge{
-    display:inline-flex;align-items:center;gap:8px;background:var(--marigold-soft);
+    display:inline-flex;align-items:center;gap:8px;background:var(--sage-tint);
     color:#8A5F16;font-weight:700;font-size:13px;padding:7px 16px;border-radius:999px;margin-bottom:18px;
   }
   .status-badge .dot{width:9px;height:9px;border-radius:50%;background:var(--marigold);}
@@ -122,7 +122,7 @@
   .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
   .step{background:var(--white);border-radius:var(--radius);padding:30px 26px;text-align:center;position:relative;}
   .step .num{
-    width:52px;height:52px;border-radius:50%;background:var(--pine);color:var(--white);
+    width:52px;height:52px;border-radius:50%;background:linear-gradient(120deg,#17403C 0%,#2E3A4E 55%,#403D52 100%);color:var(--white);
     font-family:var(--font-display);font-size:24px;display:flex;align-items:center;justify-content:center;
     margin:0 auto 16px;
   }
@@ -130,7 +130,7 @@
   .step p{font-size:14.5px;color:var(--ink-soft);}
   .how .why{
     max-width:720px;margin:36px auto 0;text-align:center;font-size:15px;color:var(--ink-soft);
-    background:var(--marigold-soft);border-radius:var(--radius);padding:18px 26px;
+    background:var(--sage-tint);border-radius:var(--radius);padding:18px 26px;
   }
   .how .why strong{color:#8A5F16;}
 
@@ -138,11 +138,11 @@
      SECTION 4 — WAITLIST EMAIL CAPTURE BAND
      Primary conversion action while enrollment is closed.
      ============================================================ */
-  .waitlist{background:var(--pine);color:var(--white);}
+  .waitlist{background:linear-gradient(120deg,#17403C 0%,#2E3A4E 55%,#403D52 100%);color:var(--white);}
   .waitlist .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding-top:64px;padding-bottom:64px;}
   .waitlist .eyebrow{color:var(--marigold-soft);}
   .waitlist h2{color:var(--white);font-size:clamp(26px,3.2vw,38px);margin-bottom:12px;}
-  .waitlist p{color:#CBDAD3;font-size:16.5px;max-width:50ch;}
+  .waitlist p{color:#D6D4E2;font-size:16.5px;max-width:50ch;}
   .waitlist-card{background:var(--white);border-radius:var(--radius);padding:30px;color:var(--ink);box-shadow:0 20px 44px rgba(0,0,0,.22);}
   .waitlist-card h3{font-size:20px;margin-bottom:6px;}
   .waitlist-card p{font-size:14px;color:var(--ink-soft);margin-bottom:16px;}
@@ -177,7 +177,7 @@
     font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
     background:var(--sage-tint);color:var(--pine);padding:6px 12px;border-radius:6px;white-space:nowrap;
   }
-  .account .tag.gold{background:var(--marigold-soft);color:#8A5F16;}
+  .account .tag.gold{background:var(--sage-tint);color:#8A5F16;}
   .account h4{font-family:var(--font-body);font-weight:700;font-size:15.5px;color:var(--pine);margin-bottom:2px;}
   .account p{font-size:13.5px;color:var(--ink-soft);}
   .account a{font-size:13.5px;font-weight:700;color:var(--pine);white-space:nowrap;}
@@ -192,7 +192,7 @@
   .quote{background:var(--white);border-radius:var(--radius);padding:28px 26px;font-size:15px;color:var(--ink-soft);}
   .quote p{font-family:var(--font-display);font-style:italic;font-size:16.5px;color:var(--ink);margin-bottom:16px;}
   .quote .who{display:flex;align-items:center;gap:12px;}
-  .quote .avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--sage) 0%,#5F8474 100%);display:flex;align-items:center;justify-content:center;color:var(--white);font-family:var(--font-display);font-size:16px;}
+  .quote .avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--sage) 0%,#4E4966 100%);display:flex;align-items:center;justify-content:center;color:var(--white);font-family:var(--font-display);font-size:16px;}
   .quote strong{display:block;color:var(--pine);font-size:14px;}
   .quote span{font-size:12.5px;}
   .proof-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:760px;margin:0 auto;text-align:center;}
@@ -223,7 +223,7 @@
   /* ============================================================
      SECTION 8 — FINAL CTA BAND
      ============================================================ */
-  .final-cta{background:var(--marigold-soft);}
+  .final-cta{background:var(--sage-tint);}
   .final-cta .wrap{display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap;padding-top:48px;padding-bottom:48px;}
   .final-cta h2{font-size:clamp(22px,2.6vw,30px);margin-bottom:6px;}
   .final-cta p{color:var(--ink-soft);font-size:15.5px;}
@@ -231,7 +231,7 @@
   /* ============================================================
      FOOTER — shared with other pages
      ============================================================ */
-  footer{background:#0F2E2B;color:#A9BFB7;font-size:14.5px;}
+  footer{background:#312E40;color:#BCB9CC;font-size:14.5px;}
   footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-top:60px;padding-bottom:44px;}
   footer h4{color:var(--white);font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px;font-family:var(--font-body);}
   footer ul{list-style:none;display:grid;gap:10px;}
@@ -261,6 +261,16 @@
     *{transition:none !important;animation:none !important;}
     html{scroll-behavior:auto;}
   }
+
+  /* ============================================================
+     "HAPPENING NOW" BANNER — signature teal→purple gradient,
+     placed between the top nav and the hero.
+     ============================================================ */
+  .now-bar{background:linear-gradient(120deg,#17403C 0%,#2E3A4E 55%,#403D52 100%);color:var(--white);font-size:14.5px;}
+  .now-bar .wrap{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding-top:10px;padding-bottom:10px;}
+  .now-tag{background:var(--marigold);color:var(--white);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:4px;white-space:nowrap;}
+  .now-bar p{flex:1;min-width:240px;margin:0;}
+  .now-bar a.now-link{color:var(--white);font-weight:700;text-decoration:underline;text-underline-offset:3px;white-space:nowrap;}
 </style>
 </head>
 <body>
@@ -290,6 +300,16 @@
   </div>
 </header>
 
+<!-- "HAPPENING NOW" BANNER — between top nav and hero -->
+<div class="now-bar" role="region" aria-label="Current announcements">
+  <div class="wrap">
+    <span class="now-tag">Happening now</span>
+    <p><strong>Free live talk this Thursday:</strong> “Yoga &amp; Bone Health — What the Research Really Says” with Dr. Loren Fishman &amp; Ellen Saltonstall.</p>
+    <a class="now-link" href="#">Save your seat →</a>
+  </div>
+</div>
+
+
 <main>
 
 <!-- ============================================================
@@ -309,7 +329,7 @@
       <p class="hero-login-note">Already a member? <a href="#member-login">Log in here</a> — no need to wait for enrollment.</p>
     </div>
     <div class="hero-visual">
-      <div class="img-placeholder">Image placeholder<br>Members practicing together in a live online class</div>
+      <div class="img-placeholder" style="aspect-ratio:4/3;position:relative;overflow:hidden;padding:0;"><img src="images/membership-hero.jpg" alt="Members practicing restorative yoga together" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"></div>
     </div>
   </div>
 </section>

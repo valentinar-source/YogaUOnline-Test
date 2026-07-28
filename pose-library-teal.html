@@ -13,15 +13,15 @@
      Shared system with option-1-teal.html and subpages
      ============================================================ */
   :root{
-    --pine:       #17403C;
-    --pine-soft:  #2A5A54;
-    --sage:       #8FAF9C;
-    --sage-tint:  #EDF3EE;
+    --pine:       #403D52;   /* slate purple primary */
+    --pine-soft:  #545070;
+    --sage:       #655F81;   /* plum accent */
+    --sage-tint:  #E0E6DA;   /* light sage (from #CCD6C2) */
     --marigold:   #C98A2D;
     --marigold-soft:#F5E7CE;
     --paper:      #FCFAF5;
-    --ink:        #24312E;
-    --ink-soft:   #5C6B66;
+    --ink:        #403D52;
+    --ink-soft:   #6A667E;
     --line:       #E3E0D6;
     --white:      #FFFFFF;
     --radius: 10px;
@@ -39,15 +39,15 @@
   .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--marigold);margin-bottom:14px;}
   .section-pad{padding:76px 0;}
   .btn{display:inline-block;font-family:var(--font-body);font-weight:700;font-size:15px;padding:14px 28px;border-radius:999px;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:all .2s ease;}
-  .btn-primary{background:var(--pine);color:var(--white);}
+  .btn-primary{background:linear-gradient(120deg,#17403C 0%,#2E3A4E 55%,#403D52 100%);color:var(--white);}
   .btn-primary:hover{background:var(--pine-soft);}
   .btn-gold{background:var(--marigold);color:var(--white);}
   .btn-gold:hover{background:#B0781F;}
   .btn-outline{border-color:var(--pine);color:var(--pine);background:transparent;}
-  .btn-outline:hover{background:var(--pine);color:var(--white);}
+  .btn-outline:hover{background:linear-gradient(120deg,#17403C 0%,#2E3A4E 55%,#403D52 100%);color:var(--white);}
   .btn:focus-visible{outline:3px solid var(--marigold);outline-offset:2px;}
   .img-placeholder{
-    background:linear-gradient(135deg,#DCE8DE 0%,#C4D8C9 60%,#B2CBBA 100%);
+    background:linear-gradient(135deg,#E2E0EC 0%,#CFCCDE 60%,#BDBACF 100%);
     border-radius:var(--radius);display:flex;align-items:center;justify-content:center;
     color:var(--pine-soft);font-size:12px;font-weight:600;letter-spacing:.06em;
     text-transform:uppercase;text-align:center;padding:14px;
@@ -76,7 +76,7 @@
   /* ============================================================
      SECTION 1 — HERO: YOGA FOR EVERY BODY
      ============================================================ */
-  .hero{background:linear-gradient(180deg,var(--sage-tint) 0%,var(--paper) 100%);}
+  .hero{background:linear-gradient(165deg,#EFEDF6 0%,#E0E6DA 55%,var(--paper) 100%);}
   .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding-top:64px;padding-bottom:64px;}
   .hero h1{font-size:clamp(36px,5vw,56px);text-transform:uppercase;letter-spacing:.02em;margin-bottom:14px;}
   .hero .quote{font-family:var(--font-display);font-style:italic;font-size:18px;color:var(--marigold);margin-bottom:18px;}
@@ -112,7 +112,7 @@
   /* ============================================================
      SECTION 4 — SAMPLE POSE REPORT CTA BAND
      ============================================================ */
-  .sample{background:var(--pine);color:var(--white);}
+  .sample{background:linear-gradient(120deg,#17403C 0%,#2E3A4E 55%,#403D52 100%);color:var(--white);}
   .sample .wrap{display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap;padding-top:48px;padding-bottom:48px;}
   .sample p{font-family:var(--font-display);font-style:italic;font-size:19px;max-width:56ch;}
 
@@ -150,7 +150,7 @@
   .prem-body{padding:22px 24px;display:flex;flex-direction:column;justify-content:center;}
   .prem-body h3{font-size:18px;margin-bottom:6px;}
   .prem-body p{font-family:var(--font-display);font-style:italic;font-size:14.5px;color:var(--ink-soft);}
-  .prem-card.signup{background:var(--marigold-soft);}
+  .prem-card.signup{background:var(--sage-tint);}
   .prem-card.signup h3{color:#8A5F16;}
 
   /* ============================================================
@@ -171,7 +171,7 @@
   /* ============================================================
      SECTION 8 — DISCOVER YOGA 2.0 CLOSING BAND
      ============================================================ */
-  .discover{background:var(--marigold-soft);}
+  .discover{background:var(--sage-tint);}
   .discover .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding-top:64px;padding-bottom:64px;}
   .discover h2{font-size:clamp(30px,4vw,46px);text-transform:uppercase;letter-spacing:.02em;margin-bottom:12px;}
   .discover p{color:var(--ink-soft);font-size:16.5px;margin-bottom:24px;max-width:46ch;}
@@ -180,7 +180,7 @@
   /* ============================================================
      FOOTER — shared with other pages
      ============================================================ */
-  footer{background:#0F2E2B;color:#A9BFB7;font-size:14.5px;}
+  footer{background:#312E40;color:#BCB9CC;font-size:14.5px;}
   footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-top:60px;padding-bottom:44px;}
   footer h4{color:var(--white);font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px;font-family:var(--font-body);}
   footer ul{list-style:none;display:grid;gap:10px;}
@@ -212,6 +212,16 @@
     *{transition:none !important;animation:none !important;}
     html{scroll-behavior:auto;}
   }
+
+  /* ============================================================
+     "HAPPENING NOW" BANNER — signature teal→purple gradient,
+     placed between the top nav and the hero.
+     ============================================================ */
+  .now-bar{background:linear-gradient(120deg,#17403C 0%,#2E3A4E 55%,#403D52 100%);color:var(--white);font-size:14.5px;}
+  .now-bar .wrap{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding-top:10px;padding-bottom:10px;}
+  .now-tag{background:var(--marigold);color:var(--white);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:4px;white-space:nowrap;}
+  .now-bar p{flex:1;min-width:240px;margin:0;}
+  .now-bar a.now-link{color:var(--white);font-weight:700;text-decoration:underline;text-underline-offset:3px;white-space:nowrap;}
 </style>
 </head>
 <body>
@@ -235,6 +245,16 @@
     <span class="menu-note">☰ Menu</span>
   </div>
 </header>
+
+<!-- "HAPPENING NOW" BANNER — between top nav and hero -->
+<div class="now-bar" role="region" aria-label="Current announcements">
+  <div class="wrap">
+    <span class="now-tag">Happening now</span>
+    <p><strong>Free live talk this Thursday:</strong> “Yoga &amp; Bone Health — What the Research Really Says” with Dr. Loren Fishman &amp; Ellen Saltonstall.</p>
+    <a class="now-link" href="#">Save your seat →</a>
+  </div>
+</div>
+
 
 <main>
 

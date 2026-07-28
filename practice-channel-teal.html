@@ -13,15 +13,15 @@
      Shared system with the homepage mockup (option-1-teal.html)
      ============================================================ */
   :root{
-    --pine:       #17403C;
-    --pine-soft:  #2A5A54;
-    --sage:       #8FAF9C;
-    --sage-tint:  #EDF3EE;
+    --pine:       #403D52;   /* slate purple primary */
+    --pine-soft:  #545070;
+    --sage:       #655F81;   /* plum accent */
+    --sage-tint:  #E0E6DA;   /* light sage (from #CCD6C2) */
     --marigold:   #C98A2D;
     --marigold-soft:#F5E7CE;
     --paper:      #FCFAF5;
-    --ink:        #24312E;
-    --ink-soft:   #5C6B66;
+    --ink:        #403D52;
+    --ink-soft:   #6A667E;
     --line:       #E3E0D6;
     --white:      #FFFFFF;
     --radius: 10px;
@@ -39,15 +39,15 @@
   .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--marigold);margin-bottom:14px;}
   .section-pad{padding:76px 0;}
   .btn{display:inline-block;font-family:var(--font-body);font-weight:700;font-size:15px;padding:14px 28px;border-radius:999px;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:all .2s ease;}
-  .btn-primary{background:var(--pine);color:var(--white);}
+  .btn-primary{background:linear-gradient(120deg,#17403C 0%,#2E3A4E 55%,#403D52 100%);color:var(--white);}
   .btn-primary:hover{background:var(--pine-soft);}
   .btn-gold{background:var(--marigold);color:var(--white);}
   .btn-gold:hover{background:#B0781F;}
   .btn-outline{border-color:var(--pine);color:var(--pine);background:transparent;}
-  .btn-outline:hover{background:var(--pine);color:var(--white);}
+  .btn-outline:hover{background:linear-gradient(120deg,#17403C 0%,#2E3A4E 55%,#403D52 100%);color:var(--white);}
   .btn:focus-visible{outline:3px solid var(--marigold);outline-offset:2px;}
   .img-placeholder{
-    background:linear-gradient(135deg,#DCE8DE 0%,#C4D8C9 60%,#B2CBBA 100%);
+    background:linear-gradient(135deg,#E2E0EC 0%,#CFCCDE 60%,#BDBACF 100%);
     border-radius:var(--radius);display:flex;align-items:center;justify-content:center;
     color:var(--pine-soft);font-size:12px;font-weight:600;letter-spacing:.06em;
     text-transform:uppercase;text-align:center;padding:14px;
@@ -74,14 +74,14 @@
      Full-width image hero with overlay, like the live page.
      ============================================================ */
   .page-hero{
-    background:linear-gradient(100deg,rgba(23,64,60,.88) 0%,rgba(42,90,84,.72) 55%,rgba(201,138,45,.35) 100%),
-      linear-gradient(135deg,#C4D8C9 0%,#8FAF9C 100%);
+    background:linear-gradient(100deg,rgba(23,64,60,.88) 0%,rgba(64,61,82,.72) 55%,rgba(64,61,82,.35) 100%),
+      linear-gradient(135deg,#CFCCDE 0%,#655F81 100%);
     color:var(--white);
   }
   .page-hero .wrap{padding-top:88px;padding-bottom:88px;max-width:760px;margin:0;padding-left:max(24px,calc((100vw - var(--maxw))/2 + 24px));}
   .page-hero h1{color:var(--white);font-size:clamp(36px,5vw,56px);letter-spacing:.02em;text-transform:uppercase;margin-bottom:14px;}
   .page-hero p.tag{font-family:var(--font-display);font-style:italic;font-size:20px;color:var(--marigold-soft);margin-bottom:8px;}
-  .page-hero p.sub{font-size:16.5px;color:#DCE8E2;max-width:48ch;}
+  .page-hero p.sub{font-size:16.5px;color:#DDDBE8;max-width:48ch;}
 
   /* ============================================================
      SECTION 2 — FOUR VALUE PROPS
@@ -142,11 +142,11 @@
   /* ============================================================
      SECTION 5 — MEMBERSHIP / FREE TRIAL CTA BAND
      ============================================================ */
-  .trial{background:var(--pine);color:var(--white);}
+  .trial{background:linear-gradient(120deg,#17403C 0%,#2E3A4E 55%,#403D52 100%);color:var(--white);}
   .trial .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center;padding-top:64px;padding-bottom:64px;}
   .trial .eyebrow{color:var(--marigold-soft);}
   .trial h2{color:var(--white);font-size:clamp(24px,3vw,34px);margin-bottom:12px;}
-  .trial p{color:#CBDAD3;font-size:16.5px;max-width:52ch;margin-bottom:0;}
+  .trial p{color:#D6D4E2;font-size:16.5px;max-width:52ch;margin-bottom:0;}
   .trial-card{background:var(--white);border-radius:var(--radius);padding:32px;text-align:center;color:var(--ink);box-shadow:0 20px 44px rgba(0,0,0,.22);}
   .trial-card h3{font-size:22px;margin-bottom:8px;}
   .trial-card p{font-size:14.5px;color:var(--ink-soft);margin-bottom:18px;}
@@ -180,7 +180,7 @@
   /* ============================================================
      SECTION 8 — NOT SURE WHERE TO START
      ============================================================ */
-  .start{background:var(--marigold-soft);}
+  .start{background:var(--sage-tint);}
   .start .wrap{display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap;padding-top:48px;padding-bottom:48px;}
   .start h2{font-size:clamp(22px,2.6vw,30px);margin-bottom:6px;}
   .start p{color:var(--ink-soft);font-size:15.5px;}
@@ -188,7 +188,7 @@
   /* ============================================================
      FOOTER — shared with homepage mockup
      ============================================================ */
-  footer{background:#0F2E2B;color:#A9BFB7;font-size:14.5px;}
+  footer{background:#312E40;color:#BCB9CC;font-size:14.5px;}
   footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-top:60px;padding-bottom:44px;}
   footer h4{color:var(--white);font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px;font-family:var(--font-body);}
   footer ul{list-style:none;display:grid;gap:10px;}
@@ -218,6 +218,16 @@
     *{transition:none !important;animation:none !important;}
     html{scroll-behavior:auto;}
   }
+
+  /* ============================================================
+     "HAPPENING NOW" BANNER — signature teal→purple gradient,
+     placed between the top nav and the hero.
+     ============================================================ */
+  .now-bar{background:linear-gradient(120deg,#17403C 0%,#2E3A4E 55%,#403D52 100%);color:var(--white);font-size:14.5px;}
+  .now-bar .wrap{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding-top:10px;padding-bottom:10px;}
+  .now-tag{background:var(--marigold);color:var(--white);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:4px;white-space:nowrap;}
+  .now-bar p{flex:1;min-width:240px;margin:0;}
+  .now-bar a.now-link{color:var(--white);font-weight:700;text-decoration:underline;text-underline-offset:3px;white-space:nowrap;}
 </style>
 </head>
 <body>
@@ -241,6 +251,16 @@
     <span class="menu-note">☰ Menu</span>
   </div>
 </header>
+
+<!-- "HAPPENING NOW" BANNER — between top nav and hero -->
+<div class="now-bar" role="region" aria-label="Current announcements">
+  <div class="wrap">
+    <span class="now-tag">Happening now</span>
+    <p><strong>Free live talk this Thursday:</strong> “Yoga &amp; Bone Health — What the Research Really Says” with Dr. Loren Fishman &amp; Ellen Saltonstall.</p>
+    <a class="now-link" href="#">Save your seat →</a>
+  </div>
+</div>
+
 
 <main>
 
