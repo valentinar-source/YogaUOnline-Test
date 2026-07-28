@@ -16,7 +16,7 @@
     --pine:       #403D52;   /* slate purple primary */
     --pine-soft:  #545070;
     --sage:       #655F81;   /* plum accent */
-    --sage-tint:  #E0E6DA;   /* light sage (from #CCD6C2) */
+    --sage-tint:  #E0E6DA;   /* light sage */
     --marigold:   #C98A2D;
     --marigold-soft:#F5E7CE;
     --paper:      #FCFAF5;
@@ -52,6 +52,8 @@
     color:var(--pine-soft);font-size:12px;font-weight:600;letter-spacing:.06em;
     text-transform:uppercase;text-align:center;padding:14px;
   }
+  .photo{position:relative;overflow:hidden;padding:0;}
+  .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
 
   /* ============================================================
      HEADER — shared with homepage mockup
@@ -74,8 +76,8 @@
      Full-width image hero with overlay, like the live page.
      ============================================================ */
   .page-hero{
-    background:linear-gradient(100deg,rgba(23,64,60,.88) 0%,rgba(64,61,82,.72) 55%,rgba(64,61,82,.35) 100%),
-      linear-gradient(135deg,#CFCCDE 0%,#655F81 100%);
+    background:linear-gradient(100deg,rgba(23,64,60,.88) 0%,rgba(64,61,82,.62) 55%,rgba(23,64,60,.30) 100%),
+      url('images/practice-hero.jpg') center 40%/cover no-repeat;
     color:var(--white);
   }
   .page-hero .wrap{padding-top:88px;padding-bottom:88px;max-width:760px;margin:0;padding-left:max(24px,calc((100vw - var(--maxw))/2 + 24px));}
@@ -219,10 +221,6 @@
     html{scroll-behavior:auto;}
   }
 
-  /* ============================================================
-     "HAPPENING NOW" BANNER — signature teal→purple gradient,
-     placed between the top nav and the hero.
-     ============================================================ */
   .now-bar{background:linear-gradient(120deg,#17403C 0%,#2E3A4E 55%,#403D52 100%);color:var(--white);font-size:14.5px;}
   .now-bar .wrap{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding-top:10px;padding-bottom:10px;}
   .now-tag{background:var(--marigold);color:var(--white);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:4px;white-space:nowrap;}
@@ -252,7 +250,6 @@
   </div>
 </header>
 
-<!-- "HAPPENING NOW" BANNER — between top nav and hero -->
 <div class="now-bar" role="region" aria-label="Current announcements">
   <div class="wrap">
     <span class="now-tag">Happening now</span>
@@ -314,17 +311,17 @@
     </div>
     <div class="community-grid">
       <div>
-        <div class="circle"><div class="img-placeholder">Photo</div></div>
+        <div class="circle"><div class="img-placeholder photo" style="border-radius:50%;"><img src="images/community-teachers.jpg" alt="Yoga teacher guiding a class" loading="lazy"></div></div>
         <h3>Leading Yoga Teachers</h3>
         <p>Our carefully selected teachers combine in-depth knowledge of yoga practice and philosophy with a deep rooting in yoga anatomy and biomechanics.</p>
       </div>
       <div>
-        <div class="circle"><div class="img-placeholder">Photo</div></div>
+        <div class="circle"><div class="img-placeholder photo" style="border-radius:50%;"><img src="images/community-practices.jpg" alt="Home yoga practice" loading="lazy"></div></div>
         <h3>Practices for You</h3>
         <p>Simply put, our goal is to give practices that fit your specific needs — filter by focus, level, length, and wellness goal.</p>
       </div>
       <div>
-        <div class="circle"><div class="img-placeholder">Photo</div></div>
+        <div class="circle"><div class="img-placeholder photo" style="border-radius:50%;"><img src="images/community-anytime.jpg" alt="Students practicing together" loading="lazy"></div></div>
         <h3>Anytime Anywhere</h3>
         <p>The key to enjoying the benefits of yoga is regular practice. Practice yoga anytime, anywhere — it fits the needs of your busy schedule.</p>
       </div>
@@ -354,9 +351,7 @@
     </div>
     <div class="video-grid">
       <a class="video-card" href="#">
-        <div class="img-placeholder video-thumb">Thumbnail
-          <span class="level">Beginner</span><span class="play"><span>▶</span></span>
-        </div>
+        <div class="img-placeholder video-thumb photo"><img src="images/wall-shoulders.jpg" alt="Wall Series: Focus on Shoulders" loading="lazy"><span class="play"><span>▶</span></span></div>
         <div class="video-body">
           <h3>Wall Series: Focus on Shoulders</h3>
           <p>Shoulders! Try using the wall and a strap: this class will help to release and strengthen.</p>
@@ -364,9 +359,7 @@
         </div>
       </a>
       <a class="video-card" href="#">
-        <div class="img-placeholder video-thumb">Thumbnail
-          <span class="level">All Levels</span><span class="play"><span>▶</span></span>
-        </div>
+        <div class="img-placeholder video-thumb photo"><img src="images/everyday-gentle-flow.jpg" alt="Everyday Gentle Flow" loading="lazy"><span class="play"><span>▶</span></span></div>
         <div class="video-body">
           <h3>Everyday Gentle Flow</h3>
           <p>Move your whole body from a busy mind into gentle stretches for your whole day.</p>
@@ -374,9 +367,7 @@
         </div>
       </a>
       <a class="video-card" href="#">
-        <div class="img-placeholder video-thumb">Thumbnail
-          <span class="level">Beginner</span><span class="play"><span>▶</span></span>
-        </div>
+        <div class="img-placeholder video-thumb photo"><img src="images/wall-balance.jpg" alt="Wall Series: Focus on Balance" loading="lazy"><span class="play"><span>▶</span></span></div>
         <div class="video-body">
           <h3>Wall Series: Focus on Balance</h3>
           <p>Balance is one of the first things we lose as we age, unless we practice it.</p>
@@ -384,9 +375,7 @@
         </div>
       </a>
       <a class="video-card" href="#">
-        <div class="img-placeholder video-thumb">Thumbnail
-          <span class="level">Gentle</span><span class="play"><span>▶</span></span>
-        </div>
+        <div class="img-placeholder video-thumb photo"><img src="images/slow-lengthening-spine.jpg" alt="Slow Yoga: Gentle Practice for Lengthening the Spine" loading="lazy"><span class="play"><span>▶</span></span></div>
         <div class="video-body">
           <h3>Slow Yoga: Gentle Practice for Lengthening the Spine</h3>
           <p>In this gentle supine yoga practice, we focus on lengthening the spine and creating more space.</p>
@@ -394,9 +383,7 @@
         </div>
       </a>
       <a class="video-card" href="#">
-        <div class="img-placeholder video-thumb">Thumbnail
-          <span class="level">Chair Yoga</span><span class="play"><span>▶</span></span>
-        </div>
+        <div class="img-placeholder video-thumb photo"><img src="images/intro-chair-yoga.jpg" alt="Introduction to Chair Yoga" loading="lazy"><span class="play"><span>▶</span></span></div>
         <div class="video-body">
           <h3>Introduction to Chair Yoga</h3>
           <p>In this brief introduction, learn how to use the chair as a tool to make yoga accessible.</p>
@@ -404,9 +391,7 @@
         </div>
       </a>
       <a class="video-card" href="#">
-        <div class="img-placeholder video-thumb">Thumbnail
-          <span class="level">Gentle</span><span class="play"><span>▶</span></span>
-        </div>
+        <div class="img-placeholder video-thumb photo"><img src="images/release-tight-shoulders.jpg" alt="Release Tight Shoulders, Improve Posture" loading="lazy"><span class="play"><span>▶</span></span></div>
         <div class="video-body">
           <h3>Release Tight Shoulders, Improve Posture</h3>
           <p>For most people, the shoulders are a very tight and sometimes painful part of the body.</p>
@@ -429,6 +414,7 @@
       <p>Enhance your practice skills with unlimited access to top-notch yoga practices, guided by teachers who adapt yoga to your body.</p>
     </div>
     <div class="trial-card">
+      <div class="img-placeholder photo" style="aspect-ratio:16/9;position:relative;margin-bottom:18px;"><img src="images/home-practice.jpg" alt="Tailoring a home yoga practice" loading="lazy"></div>
       <h3>Enjoy a Free 7-Day Trial</h3>
       <p>After 7 days, enjoy unlimited access to all Practice Channel videos for only $19/month. Cancel anytime.</p>
       <a class="btn btn-gold" href="#">Try Us Now</a>
@@ -447,9 +433,7 @@
     </div>
     <div class="video-grid">
       <a class="video-card" href="#">
-        <div class="img-placeholder video-thumb">Thumbnail
-          <span class="level">Yoga Lab</span><span class="play"><span>▶</span></span>
-        </div>
+        <div class="img-placeholder video-thumb photo"><img src="images/lab-side-plank.jpg" alt="Full Side Plank — Vasisthasana" loading="lazy"><span class="play"><span>▶</span></span></div>
         <div class="video-body">
           <h3>Strong and Steady with Full Side Plank (Vasisthasana)</h3>
           <p>Vasisthasana is a challenging pose — strengthening and balancing at once. It stabilizes the arms, belly, and legs.</p>
@@ -457,9 +441,7 @@
         </div>
       </a>
       <a class="video-card" href="#">
-        <div class="img-placeholder video-thumb">Thumbnail
-          <span class="level">Yoga Lab</span><span class="play"><span>▶</span></span>
-        </div>
+        <div class="img-placeholder video-thumb photo"><img src="images/lab-boat-pose.jpg" alt="Boat Pose core stability" loading="lazy"><span class="play"><span>▶</span></span></div>
         <div class="video-body">
           <h3>One-Stop Core Stability Shop: Boat Pose</h3>
           <p>Check out our version with Yoga Props for Every Body. It'll shore up our core stability from every angle.</p>
@@ -467,9 +449,7 @@
         </div>
       </a>
       <a class="video-card" href="#">
-        <div class="img-placeholder video-thumb">Thumbnail
-          <span class="level">Yoga Lab</span><span class="play"><span>▶</span></span>
-        </div>
+        <div class="img-placeholder video-thumb photo"><img src="images/lab-crow-pose.jpg" alt="Crow Pose core strength" loading="lazy"><span class="play"><span>▶</span></span></div>
         <div class="video-body">
           <h3>Poses We Love — Building Core Strength with Crow Pose</h3>
           <p>The one-stop shopping of core stabilization! Embrace this powerful pose to strengthen arms, wrists, and core.</p>
