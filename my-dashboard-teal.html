@@ -51,6 +51,9 @@
     color:var(--pine-soft);font-size:12px;font-weight:600;letter-spacing:.06em;
     text-transform:uppercase;text-align:center;padding:14px;
   }
+  .photo{position:relative;overflow:hidden;padding:0;background:#fff;}
+  .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .photo.contain img{object-fit:contain;}
   .new-badge{
     display:inline-block;background:var(--marigold);color:var(--white);
     font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
@@ -305,7 +308,7 @@
         <p class="sub">Your purchased courses live here — pick up right where you left off.</p>
         <div class="course-grid">
           <a class="course-card" href="#">
-            <div class="img-placeholder">Course image</div>
+            <div class="img-placeholder photo"><img src="images/course-yoga-weights.jpg" alt="Yoga mat with hand weights and a resistance band" loading="lazy"></div>
             <div class="course-body">
               <h3>Yoga with Weights: Building Strength for Bone Health and Metabolic Resilience</h3>
               <span class="byline">A 4-Week Yoga for Strength Training Series</span>
@@ -315,7 +318,7 @@
             </div>
           </a>
           <a class="course-card" href="#">
-            <div class="img-placeholder">Course image</div>
+            <div class="img-placeholder photo"><img src="images/course-core-integrity.jpg" alt="Side Plank variation building core strength" loading="lazy"></div>
             <div class="course-body">
               <h3>Yoga for Core Integrity and Fall Prevention</h3>
               <span class="byline">A Yoga Practice Series with Lynn Crimando</span>
